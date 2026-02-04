@@ -14,6 +14,7 @@ import argparse
 import subprocess
 import sys
 
+
 def run_backend():
     print("Starting backend...")
     subprocess.run(
@@ -75,10 +76,9 @@ def run_model_tests():
         check=True,
     )
 
+
 def main():
-    parser = argparse.ArgumentParser(
-        description="ForecastingWindPower Project CLI"
-    )
+    parser = argparse.ArgumentParser(description="ForecastingWindPower Project CLI")
 
     subparsers = parser.add_subparsers(dest="command")
 

@@ -1,7 +1,8 @@
-import pandas as pd
-import numpy as np
-import pytest
 from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import pytest
 
 from src.features.region_dataset_builder import Forecast_Nowcast_Allign
 
@@ -241,7 +242,7 @@ def test_final_dataset_has_region_and_power_merge(toy_inputs):
     sub["time"] = pd.to_datetime(sub["time"])
     lookup = {(r, t): v for r, t, v in sub.to_records(index=False)}
 
-    assert (("NO1", pd.Timestamp("2020-01-01 01:00:00")) in lookup)
-    assert (("NO1", pd.Timestamp("2020-01-01 02:00:00")) in lookup)
+    assert ("NO1", pd.Timestamp("2020-01-01 01:00:00")) in lookup
+    assert ("NO1", pd.Timestamp("2020-01-01 02:00:00")) in lookup
     assert lookup[("NO1", pd.Timestamp("2020-01-01 01:00:00"))] == 111.0
     assert lookup[("NO1", pd.Timestamp("2020-01-01 02:00:00"))] == 222.0
