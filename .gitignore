@@ -1,0 +1,29 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+.venv
+*.py[cod]
+*.pyo
+*.pyd
+
+.ruff_cache/
+.mypy_cache
+
+ml/.pytest_cache/
+ml/.ruff_cache/
+ml/__pycache__/
+ml/.venv/
+
+# Machine Learning
+raw_data/
+processed_data/
+*.csv
+*.parquet
+
+#Coverage
+.coverage
+coverage/
+htmlcov/
+pytest_cache/
