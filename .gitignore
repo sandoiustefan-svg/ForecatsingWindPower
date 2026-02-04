@@ -1,0 +1,18 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+.venv
+
+# Machine Learning
+raw_data/
+processed_data/
+*.csv
+*.parquet
+
+#Coverage
+.coverage
+coverage/
+htmlcov/
+pytest_cache/
