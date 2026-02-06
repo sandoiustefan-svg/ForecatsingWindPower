@@ -270,15 +270,6 @@ class Forecast_Nowcast_Allign:
 
         final_dataset = region_df.merge(self.power, on=[self.config.region_col, self.config.power_time_col], how="left")
 
+        final_dataset = final_dataset.dropna(subset=[self.config.power_col]).copy()
+
         self.save_merged_dataset(final_dataset, "src/processed_data/pipeline_data/alligned_data.parquet")
-
-
-if __name__ == "__main__":
-    """Runs the full alignment pipeline and saves the processed dataset."""
-    forecast_nowcast_alling = Forecast_Nowcast_Allign(
-        path_forecast="src/raw_data/met_forecast.parquet",
-        path_nowcast="src/raw_data/met_nowcast.parquet",
-        path_windpark_bindzone="src/raw_data/windparks_bidzone.csv",
-        path_power_per_windpark="src/raw_data/wind_power_per_bidzone.parquet",
-    )
-    forecast_nowcast_alling.merge_datasets()
