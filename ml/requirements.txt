@@ -19,6 +19,8 @@ ipykernel
 pyyaml
 tqdm
 joblib
+pyyaml 
+matplotlib
 
 # Test
 pytest

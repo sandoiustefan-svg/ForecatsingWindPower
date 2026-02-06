@@ -1,0 +1,45 @@
+architectures:
+  gru_small:
+    model:
+      type: GRU
+      input_dim: 33
+      horizon: 61
+      hidden_units: [128, 64]
+      dropout: 0.2
+    training:
+      lr: 0.001
+
+  gru_big:
+    model:
+      type: GRU
+      input_dim: 33
+      horizon: 61
+      hidden_units: [256, 128]
+      dropout: 0.2
+    training:
+      lr: 0.001
+
+  lstm_small:
+    model:
+      type: LSTM
+      input_dim: 33
+      horizon: 61
+      hidden_units: [128, 64]
+      dropout: 0.2
+    training:
+      lr: 0.001
+
+  lstm_big:
+    model:
+      type: LSTM
+      input_dim: 33
+      horizon: 61
+      hidden_units: [256, 128]
+      dropout: 0.2
+    training:
+      lr: 0.001
+
+defaults:
+  fit:
+    epochs: 40
+    batch_size: 128

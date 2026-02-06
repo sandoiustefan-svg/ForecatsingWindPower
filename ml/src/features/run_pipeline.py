@@ -111,7 +111,6 @@ def main():
     print("X_val:  ", X_val.shape, "y_val:  ", y_val.shape)
     print("X_test: ", X_test.shape, "y_test: ", y_test.shape)
 
-    # ---------- 4) Save outputs ----------
     # Save train/val/test tensors for direct model training
     np.savez_compressed(
         "src/processed_data/pipeline_data/windows_h61.npz",
