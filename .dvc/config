@@ -1,0 +1,4 @@
+[core]
+    remote = storage_wind
+['remote "storage_wind"']
+    url = gdrive://1Ale3QhbezRU_UskVMalRD8_uVc2a7Byz
