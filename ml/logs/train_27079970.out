@@ -1,0 +1,47 @@
+
+###############################################################################
+Hábrók Cluster
+Job 27079970 for user s5549329
+Finished at: Sat Feb  7 22:28:00 CET 2026
+
+Job details:
+============
+
+Job ID                         : 27079970
+Name                           : wind_train
+User                           : s5549329
+Partition                      : gpushort
+Nodes                          : v100v2gpu17
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : CANCELLED by user  
+Submit                         : 2026-02-07T22:24:30
+Start                          : 2026-02-07T22:24:31
+End                            : 2026-02-07T22:27:55
+Reserved walltime              : 04:00:00
+Used walltime                  : 00:03:24
+Used CPU time                  : 00:13:53 (Efficiency: 51.05%)
+% User (Computation)           : 89.89%
+% System (I/O)                 : 10.11%
+Total memory reserved          : 62.50G
+Maximum memory used            : 1.37G
+Requested GPUs                 : 1
+Allocated GPUs                 : v100=1
+Max GPU utilization            : 0%
+Max GPU memory used            : 0.00 
+Hints and tips      :
+ 1) You are running on a GPU node without actually using the GPU, please fix this.
+ 2) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints
+
+Acknowledgements:
+=================
+
+Please see this page for information about acknowledging Hábrók in your publications:
+
+https://wiki.hpc.rug.nl/habrok/introduction/scientific_output
+
+################################################################################

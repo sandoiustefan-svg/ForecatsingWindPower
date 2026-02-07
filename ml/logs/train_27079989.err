@@ -1,0 +1,44 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) 2023.01   2) StdEnv
+
+Currently Loaded Modules:
+  1) 2023.01                          (S)  10) SQLite/3.38.3-GCCcore-11.3.0
+  2) StdEnv                           (S)  11) XZ/5.2.5-GCCcore-11.3.0
+  3) GCCcore/11.3.0                        12) GMP/6.2.1-GCCcore-11.3.0
+  4) zlib/1.2.12-GCCcore-11.3.0            13) libffi/3.4.2-GCCcore-11.3.0
+  5) binutils/2.38-GCCcore-11.3.0          14) OpenSSL/1.1
+  6) bzip2/1.0.8-GCCcore-11.3.0            15) Python/3.10.4-GCCcore-11.3.0
+  7) ncurses/6.3-GCCcore-11.3.0            16) CUDA/12.2.0
+  8) libreadline/8.1.2-GCCcore-11.3.0      17) cuDNN/8.9.2.26-CUDA-12.2.0
+  9) Tcl/8.6.12-GCCcore-11.3.0
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+2026-02-07 22:51:59.197844: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-07 22:51:59.197887: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-07 22:51:59.199321: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-07 22:51:59.206062: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home2/s5549329/ForecatsingWindPower/ml/.venv/lib/python3.10/site-packages/google/api_core/_python_version_support.py:275: FutureWarning: You are using a Python version (3.10.4) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+2026-02-07 22:52:01.930045: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-07 22:52:06.948132: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-02-07 22:52:06.948180: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-02-07 22:52:06.949610: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-02-07 22:52:06.956399: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home2/s5549329/ForecatsingWindPower/ml/.venv/lib/python3.10/site-packages/google/api_core/_python_version_support.py:275: FutureWarning: You are using a Python version (3.10.4) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+2026-02-07 22:52:08.029107: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-02-07 22:52:10.408371: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1929] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 31134 MB memory:  -> device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:18:00.0, compute capability: 7.0
+2026-02-07 22:52:13.725567: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:454] Loaded cuDNN version 8902
+2026-02-07 22:52:15.639191: I external/local_xla/xla/service/service.cc:168] XLA service 0x7f09ea9e9630 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-02-07 22:52:15.639230: I external/local_xla/xla/service/service.cc:176]   StreamExecutor device (0): Tesla V100-PCIE-32GB, Compute Capability 7.0
+2026-02-07 22:52:15.646740: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1770501135.760016 1853950 device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.

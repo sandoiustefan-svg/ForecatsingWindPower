@@ -7,23 +7,22 @@
 #SBATCH --output=ml/logs/train_%j.out
 #SBATCH --error=ml/logs/train_%j.err
 
-# Modules
-module --force purge
+set -euo pipefail
 
-# This usually enables the correct module tree
-module load StdEnv
+# Modules (MATCH TF CUDA build = 12.2)
+module purge
+module load Python/3.10.4-GCCcore-11.3.0
+module load CUDA/12.2.0
+module load cuDNN/8.9.2.26-CUDA-12.2.0
 
-# If cache is stale
-module --ignore_cache load Python/3.10.4-GCCcore-11.3.0
-module --ignore_cache load CUDA/11.8.0
-module --ignore_cache load cuDNN/8.7.0.84-CUDA-11.8.0
+export CUDA_HOME="${EBROOTCUDA}"
+export XLA_FLAGS="--xla_gpu_cuda_data_dir=${CUDA_HOME}"
 
-export CUDA_HOME=$EBROOTCUDA
-export XLA_FLAGS=--xla_gpu_cuda_data_dir=$CUDA_HOME
+# Help the dynamic loader find CUDA/cuDNN libs
+export LD_LIBRARY_PATH="${EBROOTCUDA}/lib64:${EBROOTCUDNN}/lib64:${LD_LIBRARY_PATH:-}"
 
 # Go to repo -> ml
-cd /home2/s5549329/ForecatsingWindPower || exit 1
-cd ml || exit 1
+cd /home2/s5549329/ForecatsingWindPower/ml || exit 1
 mkdir -p logs
 
 echo "=============================="
@@ -34,26 +33,36 @@ which python || true
 python -V || true
 echo "=============================="
 
-# venv in ml/
-if [ ! -d ".venv" ]; then
-  python -m venv .venv
-fi
+echo "=============================="
+echo "GPU ENV:"
+echo "HOSTNAME=$(hostname)"
+echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-}"
+echo "SLURM_JOB_GPUS=${SLURM_JOB_GPUS:-}"
+echo "SLURM_GPUS_ON_NODE=${SLURM_GPUS_ON_NODE:-}"
+echo "nvidia-smi:"
+nvidia-smi || true
+echo "=============================="
+
+# Activate venv
 source .venv/bin/activate
 
-# Always ensure pip belongs to this venv
+# (Optional) keep tooling updated; do NOT reinstall TF each job unless you really need to
 python -m pip install --upgrade pip setuptools wheel
 
-# Install deps
-python -m pip install -r requirements.txt
-
-# TF/GPU info
-python -c "
+# TF / GPU diagnostics
+python - <<'PY'
 import tensorflow as tf
-print('TF:', tf.__version__)
-print('GPUs:', tf.config.list_physical_devices('GPU'))
-"
+info = tf.sysconfig.get_build_info()
+print("TF version:", tf.__version__)
+print("GPUs:", tf.config.list_physical_devices("GPU"))
+print("CUDA build:", info.get("cuda_version"))
+print("cuDNN build:", info.get("cudnn_version"))
+PY
 
 # Train
 python -m src.models.train_all_arhitectures
+
+# Rank
+python -m src.models.rank_runs
 
 deactivate

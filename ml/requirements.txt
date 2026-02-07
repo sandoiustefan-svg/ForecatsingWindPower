@@ -4,7 +4,7 @@ pandas>=1.5
 
 # Machine Learning & Data Science
 scikit-learn>=1.2
-tensorflow>=2.13
+tensorflow==2.15.0.post1
 pyarrow
 fastparquet
 
@@ -15,16 +15,15 @@ matplotlib>=3.7
 jupyter
 ipykernel
 
+# MLOps
 dvc[gdrive]
 
 # Utilities
 pyyaml
 tqdm
 joblib
-pyyaml 
-matplotlib
 
-# Test
+# Test / tooling
 pytest
-ruff 
+ruff
 pre-commit

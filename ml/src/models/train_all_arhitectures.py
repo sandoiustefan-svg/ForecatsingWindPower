@@ -3,8 +3,52 @@ from pathlib import Path
 
 import numpy as np
 import yaml
+import tensorflow as tf
 
 from .keras_model import KerasModel
+
+
+def _cast_callback_params(params: dict) -> dict:
+    """
+    Ensure numeric callback params are numeric even if YAML gave strings.
+    This prevents errors like: TypeError: '>' not supported between instances of 'str' and 'float'
+    """
+    float_keys = {"min_lr", "factor", "min_delta", "threshold"}
+    int_keys = {"patience", "cooldown", "verbose"}
+
+    for k in list(params.keys()):
+        v = params[k]
+        if v is None:
+            continue
+
+        if k in float_keys:
+            params[k] = float(v)
+        elif k in int_keys:
+            params[k] = int(v)
+
+    return params
+
+
+def build_callbacks(fit_cfg: dict, run_dir: Path):
+    cb_cfgs = fit_cfg.pop("callbacks", [])
+    callbacks = []
+
+    for cb in cb_cfgs:
+        name = cb["name"]
+        params = {k: v for k, v in cb.items() if k != "name"}
+        params = _cast_callback_params(params)
+
+        if name == "EarlyStopping":
+            callbacks.append(tf.keras.callbacks.EarlyStopping(**params))
+        elif name == "ReduceLROnPlateau":
+            callbacks.append(tf.keras.callbacks.ReduceLROnPlateau(**params))
+        elif name == "ModelCheckpoint":
+            callbacks.append(tf.keras.callbacks.ModelCheckpoint(**params))
+        else:
+            raise ValueError(f"Unknown callback: {name}")
+
+    callbacks.append(tf.keras.callbacks.CSVLogger(str(run_dir / "history.csv")))
+    return callbacks
 
 
 def load_npz(npz_path: str):
@@ -31,7 +75,6 @@ def save_json(path: Path, obj: dict):
 
 
 def evaluate(model: KerasModel, X, y):
-    # returns dict with loss and metrics from compile (here: mse loss, maybe mae if you add it)
     res = model.model.evaluate(X, y, verbose=0, return_dict=True)
     return {k: float(v) for k, v in res.items()}
 
@@ -47,8 +90,8 @@ def main(
         multi_cfg = yaml.safe_load(f)
 
     archs = multi_cfg["architectures"]
-    fit_defaults = multi_cfg.get("defaults", {}).get("fit", {"epochs": 30, "batch_size": 128})
-
+    fit_defaults = multi_cfg["defaults"]["fit"]
+    
     for arch_name, arch_cfg in archs.items():
         print("\n==============================")
         print(f"Training architecture: {arch_name}")
@@ -62,7 +105,18 @@ def main(
 
         model = KerasModel(config_path=str(run_config_path), name=arch_name)
 
-        model.fit(X_train, y_train, X_val, y_val, **fit_defaults, verbose=2)
+        fit_cfg = dict(fit_defaults)  # copy so we don't mutate shared dict
+        callbacks = build_callbacks(fit_cfg, run_dir)
+
+        model.fit(
+            X_train,
+            y_train,
+            X_val,
+            y_val,
+            callbacks=callbacks,
+            **fit_cfg,
+            verbose=2,
+        )
 
         model.save_weights()
 

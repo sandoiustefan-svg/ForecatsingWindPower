@@ -1,0 +1,732 @@
+==============================
+Module list:
+which python:
+/cvmfs/hpc.rug.nl/versions/2023.01/rocky8/x86_64/intel/skylake_avx512/software/Python/3.10.4-GCCcore-11.3.0/bin/python
+Python 3.10.4
+==============================
+==============================
+GPU ENV:
+HOSTNAME=v100v2gpu17
+CUDA_VISIBLE_DEVICES=0
+SLURM_JOB_GPUS=0
+SLURM_GPUS_ON_NODE=1
+nvidia-smi:
+Sat Feb  7 21:53:34 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 575.57.08              Driver Version: 575.57.08      CUDA Version: 12.9     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           On  |   00000000:18:00.0 Off |                    0 |
+| N/A   40C    P0             28W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+==============================
+Requirement already satisfied: pip in ./.venv/lib/python3.10/site-packages (26.0.1)
+Requirement already satisfied: setuptools in ./.venv/lib/python3.10/site-packages (81.0.0)
+Requirement already satisfied: wheel in ./.venv/lib/python3.10/site-packages (0.46.3)
+Requirement already satisfied: packaging>=24.0 in ./.venv/lib/python3.10/site-packages (from wheel) (26.0)
+Requirement already satisfied: numpy>=1.23 in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (2.2.6)
+Requirement already satisfied: pandas>=1.5 in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2.3.3)
+Requirement already satisfied: scikit-learn>=1.2 in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (1.7.2)
+Collecting tensorflow==2.15.0.post1 (from -r requirements.txt (line 7))
+  Downloading tensorflow-2.15.0.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Requirement already satisfied: pyarrow in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (23.0.0)
+Requirement already satisfied: fastparquet in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (2025.12.0)
+Requirement already satisfied: matplotlib>=3.7 in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 12)) (3.10.8)
+Requirement already satisfied: jupyter in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.1.1)
+Requirement already satisfied: ipykernel in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (7.2.0)
+Requirement already satisfied: pyyaml in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 22)) (6.0.3)
+Requirement already satisfied: tqdm in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 23)) (4.67.3)
+Requirement already satisfied: joblib in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (1.5.3)
+Requirement already satisfied: pytest in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 27)) (9.0.2)
+Requirement already satisfied: ruff in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 28)) (0.15.0)
+Requirement already satisfied: pre-commit in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 29)) (4.5.1)
+Requirement already satisfied: dvc[gdrive] in ./.venv/lib/python3.10/site-packages (from -r requirements.txt (line 19)) (3.66.1)
+Requirement already satisfied: absl-py>=1.0.0 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (2.4.0)
+Requirement already satisfied: astunparse>=1.6.0 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (1.6.3)
+Requirement already satisfied: flatbuffers>=23.5.26 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (25.12.19)
+Requirement already satisfied: gast!=0.5.0,!=0.5.1,!=0.5.2,>=0.2.1 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (0.7.0)
+Requirement already satisfied: google-pasta>=0.1.1 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (0.2.0)
+Requirement already satisfied: h5py>=2.9.0 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.15.1)
+Requirement already satisfied: libclang>=13.0.0 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (18.1.1)
+Collecting ml-dtypes~=0.2.0 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Using cached ml_dtypes-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+Collecting numpy>=1.23 (from -r requirements.txt (line 2))
+  Using cached numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Requirement already satisfied: opt-einsum>=2.3.2 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.4.0)
+Requirement already satisfied: packaging in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (26.0)
+Collecting protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.20.3 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Using cached protobuf-4.25.8-cp37-abi3-manylinux2014_x86_64.whl.metadata (541 bytes)
+Requirement already satisfied: setuptools in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (81.0.0)
+Requirement already satisfied: six>=1.12.0 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (1.17.0)
+Requirement already satisfied: termcolor>=1.1.0 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.3.0)
+Requirement already satisfied: typing-extensions>=3.6.6 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (4.15.0)
+Collecting wrapt<1.15,>=1.11.0 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Downloading wrapt-1.14.2-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.5 kB)
+Collecting tensorflow-io-gcs-filesystem>=0.23.1 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Using cached tensorflow_io_gcs_filesystem-0.37.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (14 kB)
+Requirement already satisfied: grpcio<2.0,>=1.24.3 in ./.venv/lib/python3.10/site-packages (from tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (1.78.0)
+Collecting tensorboard<2.16,>=2.15 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Downloading tensorboard-2.15.2-py3-none-any.whl.metadata (1.7 kB)
+Collecting tensorflow-estimator<2.16,>=2.15.0 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Downloading tensorflow_estimator-2.15.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting keras<2.16,>=2.15.0 (from tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Downloading keras-2.15.0-py3-none-any.whl.metadata (2.4 kB)
+Requirement already satisfied: google-auth<3,>=1.6.3 in ./.venv/lib/python3.10/site-packages (from tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (2.48.0)
+Collecting google-auth-oauthlib<2,>=0.5 (from tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Downloading google_auth_oauthlib-1.2.4-py3-none-any.whl.metadata (3.1 kB)
+Requirement already satisfied: markdown>=2.6.8 in ./.venv/lib/python3.10/site-packages (from tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.10.1)
+Requirement already satisfied: requests<3,>=2.21.0 in ./.venv/lib/python3.10/site-packages (from tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (2.32.5)
+Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in ./.venv/lib/python3.10/site-packages (from tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (0.7.2)
+Requirement already satisfied: werkzeug>=1.0.1 in ./.venv/lib/python3.10/site-packages (from tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.1.5)
+Requirement already satisfied: pyasn1-modules>=0.2.1 in ./.venv/lib/python3.10/site-packages (from google-auth<3,>=1.6.3->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (0.4.2)
+Requirement already satisfied: cryptography>=38.0.3 in ./.venv/lib/python3.10/site-packages (from google-auth<3,>=1.6.3->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (43.0.3)
+Requirement already satisfied: rsa<5,>=3.1.4 in ./.venv/lib/python3.10/site-packages (from google-auth<3,>=1.6.3->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (4.9.1)
+Collecting requests-oauthlib>=0.7.0 (from google-auth-oauthlib<2,>=0.5->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Using cached requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: charset_normalizer<4,>=2 in ./.venv/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.4.4)
+Requirement already satisfied: idna<4,>=2.5 in ./.venv/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.11)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.venv/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (2.6.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.venv/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (2026.1.4)
+Requirement already satisfied: pyasn1>=0.1.3 in ./.venv/lib/python3.10/site-packages (from rsa<5,>=3.1.4->google-auth<3,>=1.6.3->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (0.6.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in ./.venv/lib/python3.10/site-packages (from pandas>=1.5->-r requirements.txt (line 3)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in ./.venv/lib/python3.10/site-packages (from pandas>=1.5->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in ./.venv/lib/python3.10/site-packages (from pandas>=1.5->-r requirements.txt (line 3)) (2025.3)
+Requirement already satisfied: scipy>=1.8.0 in ./.venv/lib/python3.10/site-packages (from scikit-learn>=1.2->-r requirements.txt (line 6)) (1.15.3)
+Requirement already satisfied: threadpoolctl>=3.1.0 in ./.venv/lib/python3.10/site-packages (from scikit-learn>=1.2->-r requirements.txt (line 6)) (3.6.0)
+Requirement already satisfied: cramjam>=2.3 in ./.venv/lib/python3.10/site-packages (from fastparquet->-r requirements.txt (line 9)) (2.11.0)
+Requirement already satisfied: fsspec in ./.venv/lib/python3.10/site-packages (from fastparquet->-r requirements.txt (line 9)) (2026.2.0)
+Requirement already satisfied: contourpy>=1.0.1 in ./.venv/lib/python3.10/site-packages (from matplotlib>=3.7->-r requirements.txt (line 12)) (1.3.2)
+Requirement already satisfied: cycler>=0.10 in ./.venv/lib/python3.10/site-packages (from matplotlib>=3.7->-r requirements.txt (line 12)) (0.12.1)
+Requirement already satisfied: fonttools>=4.22.0 in ./.venv/lib/python3.10/site-packages (from matplotlib>=3.7->-r requirements.txt (line 12)) (4.61.1)
+Requirement already satisfied: kiwisolver>=1.3.1 in ./.venv/lib/python3.10/site-packages (from matplotlib>=3.7->-r requirements.txt (line 12)) (1.4.9)
+Requirement already satisfied: pillow>=8 in ./.venv/lib/python3.10/site-packages (from matplotlib>=3.7->-r requirements.txt (line 12)) (12.1.0)
+Requirement already satisfied: pyparsing>=3 in ./.venv/lib/python3.10/site-packages (from matplotlib>=3.7->-r requirements.txt (line 12)) (3.3.2)
+Requirement already satisfied: notebook in ./.venv/lib/python3.10/site-packages (from jupyter->-r requirements.txt (line 15)) (7.5.3)
+Requirement already satisfied: jupyter-console in ./.venv/lib/python3.10/site-packages (from jupyter->-r requirements.txt (line 15)) (6.6.3)
+Requirement already satisfied: nbconvert in ./.venv/lib/python3.10/site-packages (from jupyter->-r requirements.txt (line 15)) (7.17.0)
+Requirement already satisfied: ipywidgets in ./.venv/lib/python3.10/site-packages (from jupyter->-r requirements.txt (line 15)) (8.1.8)
+Requirement already satisfied: jupyterlab in ./.venv/lib/python3.10/site-packages (from jupyter->-r requirements.txt (line 15)) (4.5.3)
+Requirement already satisfied: comm>=0.1.1 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (0.2.3)
+Requirement already satisfied: debugpy>=1.6.5 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (1.8.20)
+Requirement already satisfied: ipython>=7.23.1 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (8.38.0)
+Requirement already satisfied: jupyter-client>=8.8.0 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (8.8.0)
+Requirement already satisfied: jupyter-core!=6.0.*,>=5.1 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (5.9.1)
+Requirement already satisfied: matplotlib-inline>=0.1 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (0.2.1)
+Requirement already satisfied: nest-asyncio>=1.4 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (1.6.0)
+Requirement already satisfied: psutil>=5.7 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (7.2.2)
+Requirement already satisfied: pyzmq>=25 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (27.1.0)
+Requirement already satisfied: tornado>=6.4.1 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (6.5.4)
+Requirement already satisfied: traitlets>=5.4.0 in ./.venv/lib/python3.10/site-packages (from ipykernel->-r requirements.txt (line 16)) (5.14.3)
+Requirement already satisfied: attrs>=22.2.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (25.4.0)
+Requirement already satisfied: celery in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (5.6.2)
+Requirement already satisfied: colorama>=0.3.9 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.4.6)
+Requirement already satisfied: configobj>=5.0.9 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (5.0.9)
+Requirement already satisfied: distro>=1.3 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.9.0)
+Requirement already satisfied: dpath<3,>=2.1.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (2.2.0)
+Requirement already satisfied: dulwich in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.0.0)
+Requirement already satisfied: dvc-data<3.19.0,>=3.18.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (3.18.2)
+Requirement already satisfied: dvc-http>=2.29.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (2.32.0)
+Requirement already satisfied: dvc-objects in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (5.2.0)
+Requirement already satisfied: dvc-render<2,>=1.0.1 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.0.2)
+Requirement already satisfied: dvc-studio-client<1,>=0.21 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.22.0)
+Requirement already satisfied: dvc-task<1,>=0.3.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.40.2)
+Requirement already satisfied: flatten-dict<1,>=0.4.1 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.4.2)
+Requirement already satisfied: flufl.lock<10,>=8.1.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (9.0.0)
+Requirement already satisfied: funcy>=1.14 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (2.0)
+Requirement already satisfied: grandalf<1,>=0.7 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.8)
+Requirement already satisfied: gto<2,>=1.6.0 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.9.0)
+Requirement already satisfied: hydra-core>=1.1 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.3.2)
+Requirement already satisfied: iterative-telemetry>=0.0.7 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.0.10)
+Requirement already satisfied: kombu in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (5.6.2)
+Requirement already satisfied: networkx>=2.5 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (3.4.2)
+Requirement already satisfied: omegaconf in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (2.3.0)
+Requirement already satisfied: pathspec<1,>=0.10.3 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.12.1)
+Requirement already satisfied: platformdirs<5,>=3.1.1 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (4.5.1)
+Requirement already satisfied: pydot>=1.2.4 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (4.0.1)
+Requirement already satisfied: pygtrie>=2.3.2 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (2.5.0)
+Requirement already satisfied: rich>=12 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (14.3.2)
+Requirement already satisfied: ruamel.yaml>=0.17.11 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.19.1)
+Requirement already satisfied: scmrepo<4,>=3.5.2 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (3.6.1)
+Requirement already satisfied: shortuuid>=0.5 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.0.13)
+Requirement already satisfied: shtab<2,>=1.3.4 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (1.8.0)
+Requirement already satisfied: tabulate>=0.8.7 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.9.0)
+Requirement already satisfied: tomlkit>=0.11.1 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.14.0)
+Requirement already satisfied: voluptuous>=0.11.7 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (0.16.0)
+Requirement already satisfied: zc.lockfile>=1.2.1 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (4.0)
+Requirement already satisfied: dvc-gdrive<4,>=3 in ./.venv/lib/python3.10/site-packages (from dvc[gdrive]->-r requirements.txt (line 19)) (3.0.1)
+Requirement already satisfied: dictdiffer>=0.8.1 in ./.venv/lib/python3.10/site-packages (from dvc-data<3.19.0,>=3.18.0->dvc[gdrive]->-r requirements.txt (line 19)) (0.9.0)
+Requirement already satisfied: diskcache>=5.2.1 in ./.venv/lib/python3.10/site-packages (from dvc-data<3.19.0,>=3.18.0->dvc[gdrive]->-r requirements.txt (line 19)) (5.6.3)
+Requirement already satisfied: sqltrie<1,>=0.11.0 in ./.venv/lib/python3.10/site-packages (from dvc-data<3.19.0,>=3.18.0->dvc[gdrive]->-r requirements.txt (line 19)) (0.11.2)
+Requirement already satisfied: orjson<4,>=3 in ./.venv/lib/python3.10/site-packages (from dvc-data<3.19.0,>=3.18.0->dvc[gdrive]->-r requirements.txt (line 19)) (3.11.7)
+Requirement already satisfied: pydrive2>=1.19.0 in ./.venv/lib/python3.10/site-packages (from pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (1.21.3)
+Requirement already satisfied: billiard<5.0,>=4.2.1 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (4.2.4)
+Requirement already satisfied: vine<6.0,>=5.1.0 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (5.1.0)
+Requirement already satisfied: click<9.0,>=8.1.2 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (8.3.1)
+Requirement already satisfied: click-didyoumean>=0.3.0 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (0.3.1)
+Requirement already satisfied: click-repl>=0.2.0 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (0.3.0)
+Requirement already satisfied: click-plugins>=1.1.1 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (1.1.1.2)
+Requirement already satisfied: exceptiongroup>=1.3.0 in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (1.3.1)
+Requirement already satisfied: tzlocal in ./.venv/lib/python3.10/site-packages (from celery->dvc[gdrive]->-r requirements.txt (line 19)) (5.3.1)
+Requirement already satisfied: atpublic in ./.venv/lib/python3.10/site-packages (from flufl.lock<10,>=8.1.0->dvc[gdrive]->-r requirements.txt (line 19)) (7.0.0)
+Requirement already satisfied: entrypoints in ./.venv/lib/python3.10/site-packages (from gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (0.4)
+Requirement already satisfied: pydantic>=2 in ./.venv/lib/python3.10/site-packages (from gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (2.12.5)
+Requirement already satisfied: pydantic-settings>=2 in ./.venv/lib/python3.10/site-packages (from gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (2.12.0)
+Requirement already satisfied: semver>=2.13.0 in ./.venv/lib/python3.10/site-packages (from gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (3.0.4)
+Requirement already satisfied: typer>=0.4.1 in ./.venv/lib/python3.10/site-packages (from gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (0.21.1)
+Requirement already satisfied: amqp<6.0.0,>=5.1.1 in ./.venv/lib/python3.10/site-packages (from kombu->dvc[gdrive]->-r requirements.txt (line 19)) (5.3.1)
+Requirement already satisfied: gitpython>3 in ./.venv/lib/python3.10/site-packages (from scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (3.1.46)
+Requirement already satisfied: pygit2>=1.14.0 in ./.venv/lib/python3.10/site-packages (from scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (1.18.2)
+Requirement already satisfied: asyncssh<3,>=2.13.1 in ./.venv/lib/python3.10/site-packages (from scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (2.22.0)
+Requirement already satisfied: aiohttp-retry>=2.5.0 in ./.venv/lib/python3.10/site-packages (from scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (2.9.1)
+Requirement already satisfied: iniconfig>=1.0.1 in ./.venv/lib/python3.10/site-packages (from pytest->-r requirements.txt (line 27)) (2.3.0)
+Requirement already satisfied: pluggy<2,>=1.5 in ./.venv/lib/python3.10/site-packages (from pytest->-r requirements.txt (line 27)) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in ./.venv/lib/python3.10/site-packages (from pytest->-r requirements.txt (line 27)) (2.19.2)
+Requirement already satisfied: tomli>=1 in ./.venv/lib/python3.10/site-packages (from pytest->-r requirements.txt (line 27)) (2.4.0)
+Requirement already satisfied: cfgv>=2.0.0 in ./.venv/lib/python3.10/site-packages (from pre-commit->-r requirements.txt (line 29)) (3.5.0)
+Requirement already satisfied: identify>=1.0.0 in ./.venv/lib/python3.10/site-packages (from pre-commit->-r requirements.txt (line 29)) (2.6.16)
+Requirement already satisfied: nodeenv>=0.11.1 in ./.venv/lib/python3.10/site-packages (from pre-commit->-r requirements.txt (line 29)) (1.10.0)
+Requirement already satisfied: virtualenv>=20.10.0 in ./.venv/lib/python3.10/site-packages (from pre-commit->-r requirements.txt (line 29)) (20.36.1)
+Requirement already satisfied: aiohttp in ./.venv/lib/python3.10/site-packages (from aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (3.13.3)
+Requirement already satisfied: wheel<1.0,>=0.23.0 in ./.venv/lib/python3.10/site-packages (from astunparse>=1.6.0->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (0.46.3)
+Requirement already satisfied: prompt-toolkit>=3.0.36 in ./.venv/lib/python3.10/site-packages (from click-repl>=0.2.0->celery->dvc[gdrive]->-r requirements.txt (line 19)) (3.0.52)
+Requirement already satisfied: cffi>=1.12 in ./.venv/lib/python3.10/site-packages (from cryptography>=38.0.3->google-auth<3,>=1.6.3->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (2.0.0)
+Requirement already satisfied: pycparser in ./.venv/lib/python3.10/site-packages (from cffi>=1.12->cryptography>=38.0.3->google-auth<3,>=1.6.3->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.0)
+Requirement already satisfied: gitdb<5,>=4.0.1 in ./.venv/lib/python3.10/site-packages (from gitpython>3->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (4.0.12)
+Requirement already satisfied: smmap<6,>=3.0.1 in ./.venv/lib/python3.10/site-packages (from gitdb<5,>=4.0.1->gitpython>3->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (5.0.2)
+Requirement already satisfied: antlr4-python3-runtime==4.9.* in ./.venv/lib/python3.10/site-packages (from hydra-core>=1.1->dvc[gdrive]->-r requirements.txt (line 19)) (4.9.3)
+Requirement already satisfied: decorator in ./.venv/lib/python3.10/site-packages (from ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (5.2.1)
+Requirement already satisfied: jedi>=0.16 in ./.venv/lib/python3.10/site-packages (from ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (0.19.2)
+Requirement already satisfied: pexpect>4.3 in ./.venv/lib/python3.10/site-packages (from ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (4.9.0)
+Requirement already satisfied: stack_data in ./.venv/lib/python3.10/site-packages (from ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (0.6.3)
+Requirement already satisfied: wcwidth in ./.venv/lib/python3.10/site-packages (from prompt-toolkit>=3.0.36->click-repl>=0.2.0->celery->dvc[gdrive]->-r requirements.txt (line 19)) (0.6.0)
+Requirement already satisfied: appdirs in ./.venv/lib/python3.10/site-packages (from iterative-telemetry>=0.0.7->dvc[gdrive]->-r requirements.txt (line 19)) (1.4.4)
+Requirement already satisfied: filelock in ./.venv/lib/python3.10/site-packages (from iterative-telemetry>=0.0.7->dvc[gdrive]->-r requirements.txt (line 19)) (3.20.3)
+Requirement already satisfied: parso<0.9.0,>=0.8.4 in ./.venv/lib/python3.10/site-packages (from jedi>=0.16->ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (0.8.5)
+Requirement already satisfied: ptyprocess>=0.5 in ./.venv/lib/python3.10/site-packages (from pexpect>4.3->ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (0.7.0)
+Requirement already satisfied: annotated-types>=0.6.0 in ./.venv/lib/python3.10/site-packages (from pydantic>=2->gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.41.5 in ./.venv/lib/python3.10/site-packages (from pydantic>=2->gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (2.41.5)
+Requirement already satisfied: typing-inspection>=0.4.2 in ./.venv/lib/python3.10/site-packages (from pydantic>=2->gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (0.4.2)
+Requirement already satisfied: python-dotenv>=0.21.0 in ./.venv/lib/python3.10/site-packages (from pydantic-settings>=2->gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (1.2.1)
+Requirement already satisfied: google-api-python-client>=1.12.5 in ./.venv/lib/python3.10/site-packages (from pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (2.189.0)
+Requirement already satisfied: oauth2client>=4.0.0 in ./.venv/lib/python3.10/site-packages (from pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (4.1.3)
+Requirement already satisfied: pyOpenSSL<=24.2.1,>=19.1.0 in ./.venv/lib/python3.10/site-packages (from pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (24.2.1)
+Requirement already satisfied: httplib2<1.0.0,>=0.19.0 in ./.venv/lib/python3.10/site-packages (from google-api-python-client>=1.12.5->pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (0.31.2)
+Requirement already satisfied: google-auth-httplib2<1.0.0,>=0.2.0 in ./.venv/lib/python3.10/site-packages (from google-api-python-client>=1.12.5->pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (0.3.0)
+Requirement already satisfied: google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5 in ./.venv/lib/python3.10/site-packages (from google-api-python-client>=1.12.5->pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (2.29.0)
+Requirement already satisfied: uritemplate<5,>=3.0.1 in ./.venv/lib/python3.10/site-packages (from google-api-python-client>=1.12.5->pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (4.2.0)
+Requirement already satisfied: googleapis-common-protos<2.0.0,>=1.56.2 in ./.venv/lib/python3.10/site-packages (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=1.12.5->pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (1.72.0)
+Requirement already satisfied: proto-plus<2.0.0,>=1.22.3 in ./.venv/lib/python3.10/site-packages (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=1.12.5->pydrive2>=1.19.0->pydrive2[fsspec]>=1.19.0->dvc-gdrive<4,>=3->dvc[gdrive]->-r requirements.txt (line 19)) (1.27.1)
+Collecting oauthlib>=3.0.0 (from requests-oauthlib>=0.7.0->google-auth-oauthlib<2,>=0.5->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7))
+  Using cached oauthlib-3.3.1-py3-none-any.whl.metadata (7.9 kB)
+Requirement already satisfied: markdown-it-py>=2.2.0 in ./.venv/lib/python3.10/site-packages (from rich>=12->dvc[gdrive]->-r requirements.txt (line 19)) (4.0.0)
+Requirement already satisfied: mdurl~=0.1 in ./.venv/lib/python3.10/site-packages (from markdown-it-py>=2.2.0->rich>=12->dvc[gdrive]->-r requirements.txt (line 19)) (0.1.2)
+Requirement already satisfied: shellingham>=1.3.0 in ./.venv/lib/python3.10/site-packages (from typer>=0.4.1->gto<2,>=1.6.0->dvc[gdrive]->-r requirements.txt (line 19)) (1.5.4)
+Requirement already satisfied: distlib<1,>=0.3.7 in ./.venv/lib/python3.10/site-packages (from virtualenv>=20.10.0->pre-commit->-r requirements.txt (line 29)) (0.4.0)
+Requirement already satisfied: markupsafe>=2.1.1 in ./.venv/lib/python3.10/site-packages (from werkzeug>=1.0.1->tensorboard<2.16,>=2.15->tensorflow==2.15.0.post1->-r requirements.txt (line 7)) (3.0.3)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.4.0 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (1.4.0)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (5.0.1)
+Requirement already satisfied: frozenlist>=1.1.1 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (1.8.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (6.7.1)
+Requirement already satisfied: propcache>=0.2.0 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (0.4.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in ./.venv/lib/python3.10/site-packages (from aiohttp->aiohttp-retry>=2.5.0->scmrepo<4,>=3.5.2->dvc[gdrive]->-r requirements.txt (line 19)) (1.22.0)
+Requirement already satisfied: widgetsnbextension~=4.0.14 in ./.venv/lib/python3.10/site-packages (from ipywidgets->jupyter->-r requirements.txt (line 15)) (4.0.15)
+Requirement already satisfied: jupyterlab_widgets~=3.0.15 in ./.venv/lib/python3.10/site-packages (from ipywidgets->jupyter->-r requirements.txt (line 15)) (3.0.16)
+Requirement already satisfied: async-lru>=1.0.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (2.1.0)
+Requirement already satisfied: httpx<1,>=0.25.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (0.28.1)
+Requirement already satisfied: jinja2>=3.0.3 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (3.1.6)
+Requirement already satisfied: jupyter-lsp>=2.0.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (2.3.0)
+Requirement already satisfied: jupyter-server<3,>=2.4.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (2.17.0)
+Requirement already satisfied: jupyterlab-server<3,>=2.28.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (2.28.0)
+Requirement already satisfied: notebook-shim>=0.2 in ./.venv/lib/python3.10/site-packages (from jupyterlab->jupyter->-r requirements.txt (line 15)) (0.2.4)
+Requirement already satisfied: anyio in ./.venv/lib/python3.10/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (4.12.1)
+Requirement already satisfied: httpcore==1.* in ./.venv/lib/python3.10/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.0.9)
+Requirement already satisfied: h11>=0.16 in ./.venv/lib/python3.10/site-packages (from httpcore==1.*->httpx<1,>=0.25.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.16.0)
+Requirement already satisfied: argon2-cffi>=21.1 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (25.1.0)
+Requirement already satisfied: jupyter-events>=0.11.0 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.12.0)
+Requirement already satisfied: jupyter-server-terminals>=0.4.4 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.5.4)
+Requirement already satisfied: nbformat>=5.3.0 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (5.10.4)
+Requirement already satisfied: overrides>=5.0 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (7.7.0)
+Requirement already satisfied: prometheus-client>=0.9 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.24.1)
+Requirement already satisfied: send2trash>=1.8.2 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (2.1.0)
+Requirement already satisfied: terminado>=0.8.3 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.18.1)
+Requirement already satisfied: websocket-client>=1.7 in ./.venv/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.9.0)
+Requirement already satisfied: babel>=2.10 in ./.venv/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.28.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (2.18.0)
+Requirement already satisfied: json5>=0.9.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.28.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.13.0)
+Requirement already satisfied: jsonschema>=4.18.0 in ./.venv/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.28.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (4.26.0)
+Requirement already satisfied: argon2-cffi-bindings in ./.venv/lib/python3.10/site-packages (from argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (25.1.0)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in ./.venv/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.28.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (2025.9.1)
+Requirement already satisfied: referencing>=0.28.4 in ./.venv/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.28.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.37.0)
+Requirement already satisfied: rpds-py>=0.25.0 in ./.venv/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.28.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.30.0)
+Requirement already satisfied: python-json-logger>=2.0.4 in ./.venv/lib/python3.10/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (4.0.0)
+Requirement already satisfied: rfc3339-validator in ./.venv/lib/python3.10/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.1.4)
+Requirement already satisfied: rfc3986-validator>=0.1.1 in ./.venv/lib/python3.10/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (0.1.1)
+Requirement already satisfied: fqdn in ./.venv/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.5.1)
+Requirement already satisfied: isoduration in ./.venv/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (20.11.0)
+Requirement already satisfied: jsonpointer>1.13 in ./.venv/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (3.0.0)
+Requirement already satisfied: rfc3987-syntax>=1.1.0 in ./.venv/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.1.0)
+Requirement already satisfied: uri-template in ./.venv/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.3.0)
+Requirement already satisfied: webcolors>=24.6.0 in ./.venv/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (25.10.0)
+Requirement already satisfied: beautifulsoup4 in ./.venv/lib/python3.10/site-packages (from nbconvert->jupyter->-r requirements.txt (line 15)) (4.14.3)
+Requirement already satisfied: bleach!=5.0.0 in ./.venv/lib/python3.10/site-packages (from bleach[css]!=5.0.0->nbconvert->jupyter->-r requirements.txt (line 15)) (6.3.0)
+Requirement already satisfied: defusedxml in ./.venv/lib/python3.10/site-packages (from nbconvert->jupyter->-r requirements.txt (line 15)) (0.7.1)
+Requirement already satisfied: jupyterlab-pygments in ./.venv/lib/python3.10/site-packages (from nbconvert->jupyter->-r requirements.txt (line 15)) (0.3.0)
+Requirement already satisfied: mistune<4,>=2.0.3 in ./.venv/lib/python3.10/site-packages (from nbconvert->jupyter->-r requirements.txt (line 15)) (3.2.0)
+Requirement already satisfied: nbclient>=0.5.0 in ./.venv/lib/python3.10/site-packages (from nbconvert->jupyter->-r requirements.txt (line 15)) (0.10.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in ./.venv/lib/python3.10/site-packages (from nbconvert->jupyter->-r requirements.txt (line 15)) (1.5.1)
+Requirement already satisfied: webencodings in ./.venv/lib/python3.10/site-packages (from bleach!=5.0.0->bleach[css]!=5.0.0->nbconvert->jupyter->-r requirements.txt (line 15)) (0.5.1)
+Requirement already satisfied: tinycss2<1.5,>=1.1.0 in ./.venv/lib/python3.10/site-packages (from bleach[css]!=5.0.0->nbconvert->jupyter->-r requirements.txt (line 15)) (1.4.0)
+Requirement already satisfied: fastjsonschema>=2.15 in ./.venv/lib/python3.10/site-packages (from nbformat>=5.3.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (2.21.2)
+Requirement already satisfied: lark>=1.2.2 in ./.venv/lib/python3.10/site-packages (from rfc3987-syntax>=1.1.0->jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.3.1)
+Requirement already satisfied: soupsieve>=1.6.1 in ./.venv/lib/python3.10/site-packages (from beautifulsoup4->nbconvert->jupyter->-r requirements.txt (line 15)) (2.8.3)
+Requirement already satisfied: arrow>=0.15.0 in ./.venv/lib/python3.10/site-packages (from isoduration->jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter->-r requirements.txt (line 15)) (1.4.0)
+Requirement already satisfied: executing>=1.2.0 in ./.venv/lib/python3.10/site-packages (from stack_data->ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (2.2.1)
+Requirement already satisfied: asttokens>=2.1.0 in ./.venv/lib/python3.10/site-packages (from stack_data->ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (3.0.1)
+Requirement already satisfied: pure-eval in ./.venv/lib/python3.10/site-packages (from stack_data->ipython>=7.23.1->ipykernel->-r requirements.txt (line 16)) (0.2.3)
+Downloading tensorflow-2.15.0.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (475.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 475.2/475.2 MB 74.0 MB/s  0:00:05
+Using cached numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+Downloading keras-2.15.0-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 35.0 MB/s  0:00:00
+Using cached ml_dtypes-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
+Using cached protobuf-4.25.8-cp37-abi3-manylinux2014_x86_64.whl (294 kB)
+Downloading tensorboard-2.15.2-py3-none-any.whl (5.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 24.1 MB/s  0:00:00
+Downloading google_auth_oauthlib-1.2.4-py3-none-any.whl (19 kB)
+Downloading tensorflow_estimator-2.15.0-py2.py3-none-any.whl (441 kB)
+Downloading wrapt-1.14.2-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (76 kB)
+Using cached requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+Using cached oauthlib-3.3.1-py3-none-any.whl (160 kB)
+Using cached tensorflow_io_gcs_filesystem-0.37.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.1 MB)
+Installing collected packages: wrapt, tensorflow-io-gcs-filesystem, tensorflow-estimator, protobuf, oauthlib, numpy, keras, requests-oauthlib, ml-dtypes, google-auth-oauthlib, tensorboard, tensorflow
+  Attempting uninstall: wrapt
+    Found existing installation: wrapt 2.1.1
+    Uninstalling wrapt-2.1.1:
+      Successfully uninstalled wrapt-2.1.1
+  Attempting uninstall: protobuf
+    Found existing installation: protobuf 6.33.5
+    Uninstalling protobuf-6.33.5:
+      Successfully uninstalled protobuf-6.33.5
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.2.6
+    Uninstalling numpy-2.2.6:
+      Successfully uninstalled numpy-2.2.6
+  Attempting uninstall: keras
+    Found existing installation: keras 3.12.1
+    Uninstalling keras-3.12.1:
+      Successfully uninstalled keras-3.12.1
+  Attempting uninstall: ml-dtypes
+    Found existing installation: ml_dtypes 0.5.4
+    Uninstalling ml_dtypes-0.5.4:
+      Successfully uninstalled ml_dtypes-0.5.4
+  Attempting uninstall: tensorboard
+    Found existing installation: tensorboard 2.20.0
+    Uninstalling tensorboard-2.20.0:
+      Successfully uninstalled tensorboard-2.20.0
+  Attempting uninstall: tensorflow
+    Found existing installation: tensorflow 2.20.0
+    Uninstalling tensorflow-2.20.0:
+      Successfully uninstalled tensorflow-2.20.0
+
+Successfully installed google-auth-oauthlib-1.2.4 keras-2.15.0 ml-dtypes-0.2.0 numpy-1.26.4 oauthlib-3.3.1 protobuf-4.25.8 requests-oauthlib-2.0.0 tensorboard-2.15.2 tensorflow-2.15.0.post1 tensorflow-estimator-2.15.0 tensorflow-io-gcs-filesystem-0.37.1 wrapt-1.14.2
+TF version: 2.15.0
+GPUs: []
+CUDA build: 12.2
+cuDNN build: 8
+
+==============================
+Training architecture: gru_small
+==============================
+Epoch 1/200
+40/40 - 6s - loss: 0.1090 - val_loss: 0.0509 - lr: 0.0010 - 6s/epoch - 154ms/step
+Epoch 2/200
+40/40 - 3s - loss: 0.0309 - val_loss: 0.0410 - lr: 0.0010 - 3s/epoch - 66ms/step
+Epoch 3/200
+40/40 - 3s - loss: 0.0255 - val_loss: 0.0391 - lr: 0.0010 - 3s/epoch - 67ms/step
+Epoch 4/200
+40/40 - 3s - loss: 0.0232 - val_loss: 0.0402 - lr: 0.0010 - 3s/epoch - 66ms/step
+Epoch 5/200
+40/40 - 3s - loss: 0.0216 - val_loss: 0.0389 - lr: 0.0010 - 3s/epoch - 67ms/step
+Epoch 6/200
+40/40 - 3s - loss: 0.0203 - val_loss: 0.0390 - lr: 0.0010 - 3s/epoch - 66ms/step
+Epoch 7/200
+40/40 - 3s - loss: 0.0192 - val_loss: 0.0401 - lr: 0.0010 - 3s/epoch - 67ms/step
+Epoch 8/200
+40/40 - 3s - loss: 0.0182 - val_loss: 0.0396 - lr: 0.0010 - 3s/epoch - 66ms/step
+Epoch 9/200
+40/40 - 3s - loss: 0.0174 - val_loss: 0.0407 - lr: 0.0010 - 3s/epoch - 66ms/step
+Epoch 10/200
+40/40 - 3s - loss: 0.0166 - val_loss: 0.0433 - lr: 0.0010 - 3s/epoch - 66ms/step
+Epoch 11/200
+40/40 - 3s - loss: 0.0160 - val_loss: 0.0424 - lr: 5.0000e-04 - 3s/epoch - 66ms/step
+Epoch 12/200
+40/40 - 3s - loss: 0.0156 - val_loss: 0.0391 - lr: 5.0000e-04 - 3s/epoch - 66ms/step
+Epoch 13/200
+40/40 - 3s - loss: 0.0154 - val_loss: 0.0431 - lr: 5.0000e-04 - 3s/epoch - 66ms/step
+Epoch 14/200
+40/40 - 3s - loss: 0.0150 - val_loss: 0.0434 - lr: 5.0000e-04 - 3s/epoch - 66ms/step
+Epoch 15/200
+40/40 - 3s - loss: 0.0147 - val_loss: 0.0441 - lr: 5.0000e-04 - 3s/epoch - 67ms/step
+Epoch 16/200
+40/40 - 3s - loss: 0.0143 - val_loss: 0.0433 - lr: 2.5000e-04 - 3s/epoch - 67ms/step
+Epoch 17/200
+40/40 - 3s - loss: 0.0142 - val_loss: 0.0426 - lr: 2.5000e-04 - 3s/epoch - 66ms/step
+Epoch 18/200
+40/40 - 3s - loss: 0.0141 - val_loss: 0.0475 - lr: 2.5000e-04 - 3s/epoch - 66ms/step
+Epoch 19/200
+40/40 - 3s - loss: 0.0141 - val_loss: 0.0457 - lr: 2.5000e-04 - 3s/epoch - 67ms/step
+Epoch 20/200
+40/40 - 3s - loss: 0.0139 - val_loss: 0.0448 - lr: 2.5000e-04 - 3s/epoch - 66ms/step
+Weights saved to: artifacts/gru_small/model.weights.h5
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 488ms/step
+Saved run to: artifacts/gru_small
+Val metrics: {'loss': 0.03892206773161888}
+Test metrics: {'loss': 0.04169208183884621}
+
+==============================
+Training architecture: gru_big
+==============================
+Epoch 1/200
+40/40 - 8s - loss: 0.1064 - val_loss: 0.0554 - lr: 0.0010 - 8s/epoch - 206ms/step
+Epoch 2/200
+40/40 - 5s - loss: 0.0326 - val_loss: 0.0431 - lr: 0.0010 - 5s/epoch - 125ms/step
+Epoch 3/200
+40/40 - 5s - loss: 0.0273 - val_loss: 0.0387 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 4/200
+40/40 - 5s - loss: 0.0250 - val_loss: 0.0359 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 5/200
+40/40 - 5s - loss: 0.0230 - val_loss: 0.0406 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 6/200
+40/40 - 5s - loss: 0.0215 - val_loss: 0.0362 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 7/200
+40/40 - 5s - loss: 0.0203 - val_loss: 0.0365 - lr: 0.0010 - 5s/epoch - 125ms/step
+Epoch 8/200
+40/40 - 5s - loss: 0.0193 - val_loss: 0.0346 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 9/200
+40/40 - 5s - loss: 0.0183 - val_loss: 0.0360 - lr: 0.0010 - 5s/epoch - 122ms/step
+Epoch 10/200
+40/40 - 5s - loss: 0.0177 - val_loss: 0.0356 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 11/200
+40/40 - 5s - loss: 0.0171 - val_loss: 0.0360 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 12/200
+40/40 - 5s - loss: 0.0165 - val_loss: 0.0315 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 13/200
+40/40 - 5s - loss: 0.0161 - val_loss: 0.0369 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 14/200
+40/40 - 5s - loss: 0.0155 - val_loss: 0.0400 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 15/200
+40/40 - 5s - loss: 0.0154 - val_loss: 0.0397 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 16/200
+40/40 - 5s - loss: 0.0148 - val_loss: 0.0341 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 17/200
+40/40 - 5s - loss: 0.0146 - val_loss: 0.0307 - lr: 0.0010 - 5s/epoch - 127ms/step
+Epoch 18/200
+40/40 - 5s - loss: 0.0142 - val_loss: 0.0396 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 19/200
+40/40 - 5s - loss: 0.0140 - val_loss: 0.0326 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 20/200
+40/40 - 5s - loss: 0.0137 - val_loss: 0.0345 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 21/200
+40/40 - 5s - loss: 0.0136 - val_loss: 0.0348 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 22/200
+40/40 - 5s - loss: 0.0132 - val_loss: 0.0304 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 23/200
+40/40 - 5s - loss: 0.0131 - val_loss: 0.0310 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 24/200
+40/40 - 5s - loss: 0.0131 - val_loss: 0.0359 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 25/200
+40/40 - 5s - loss: 0.0126 - val_loss: 0.0308 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 26/200
+40/40 - 5s - loss: 0.0125 - val_loss: 0.0381 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 27/200
+40/40 - 5s - loss: 0.0125 - val_loss: 0.0281 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 28/200
+40/40 - 5s - loss: 0.0122 - val_loss: 0.0273 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 29/200
+40/40 - 5s - loss: 0.0121 - val_loss: 0.0318 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 30/200
+40/40 - 5s - loss: 0.0119 - val_loss: 0.0297 - lr: 0.0010 - 5s/epoch - 124ms/step
+Epoch 31/200
+40/40 - 5s - loss: 0.0117 - val_loss: 0.0330 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 32/200
+40/40 - 5s - loss: 0.0119 - val_loss: 0.0293 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 33/200
+40/40 - 5s - loss: 0.0117 - val_loss: 0.0284 - lr: 0.0010 - 5s/epoch - 123ms/step
+Epoch 34/200
+40/40 - 5s - loss: 0.0110 - val_loss: 0.0296 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 35/200
+40/40 - 5s - loss: 0.0110 - val_loss: 0.0278 - lr: 5.0000e-04 - 5s/epoch - 124ms/step
+Epoch 36/200
+40/40 - 5s - loss: 0.0108 - val_loss: 0.0264 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 37/200
+40/40 - 5s - loss: 0.0109 - val_loss: 0.0292 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 38/200
+40/40 - 5s - loss: 0.0108 - val_loss: 0.0289 - lr: 5.0000e-04 - 5s/epoch - 124ms/step
+Epoch 39/200
+40/40 - 5s - loss: 0.0108 - val_loss: 0.0276 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 40/200
+40/40 - 5s - loss: 0.0107 - val_loss: 0.0263 - lr: 5.0000e-04 - 5s/epoch - 122ms/step
+Epoch 41/200
+40/40 - 5s - loss: 0.0108 - val_loss: 0.0280 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 42/200
+40/40 - 5s - loss: 0.0107 - val_loss: 0.0281 - lr: 5.0000e-04 - 5s/epoch - 124ms/step
+Epoch 43/200
+40/40 - 5s - loss: 0.0105 - val_loss: 0.0289 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 44/200
+40/40 - 5s - loss: 0.0104 - val_loss: 0.0306 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 45/200
+40/40 - 5s - loss: 0.0104 - val_loss: 0.0317 - lr: 5.0000e-04 - 5s/epoch - 123ms/step
+Epoch 46/200
+40/40 - 5s - loss: 0.0102 - val_loss: 0.0290 - lr: 2.5000e-04 - 5s/epoch - 123ms/step
+Epoch 47/200
+40/40 - 5s - loss: 0.0101 - val_loss: 0.0257 - lr: 2.5000e-04 - 5s/epoch - 124ms/step
+Epoch 48/200
+40/40 - 5s - loss: 0.0101 - val_loss: 0.0288 - lr: 2.5000e-04 - 5s/epoch - 124ms/step
+Epoch 49/200
+40/40 - 5s - loss: 0.0100 - val_loss: 0.0276 - lr: 2.5000e-04 - 5s/epoch - 123ms/step
+Epoch 50/200
+40/40 - 5s - loss: 0.0100 - val_loss: 0.0285 - lr: 2.5000e-04 - 5s/epoch - 123ms/step
+Epoch 51/200
+40/40 - 5s - loss: 0.0099 - val_loss: 0.0286 - lr: 2.5000e-04 - 5s/epoch - 123ms/step
+Epoch 52/200
+40/40 - 5s - loss: 0.0100 - val_loss: 0.0281 - lr: 2.5000e-04 - 5s/epoch - 123ms/step
+Epoch 53/200
+40/40 - 5s - loss: 0.0098 - val_loss: 0.0285 - lr: 1.2500e-04 - 5s/epoch - 124ms/step
+Epoch 54/200
+40/40 - 5s - loss: 0.0098 - val_loss: 0.0304 - lr: 1.2500e-04 - 5s/epoch - 124ms/step
+Epoch 55/200
+40/40 - 5s - loss: 0.0097 - val_loss: 0.0300 - lr: 1.2500e-04 - 5s/epoch - 124ms/step
+Epoch 56/200
+40/40 - 5s - loss: 0.0097 - val_loss: 0.0287 - lr: 1.2500e-04 - 5s/epoch - 123ms/step
+Epoch 57/200
+40/40 - 5s - loss: 0.0096 - val_loss: 0.0277 - lr: 1.2500e-04 - 5s/epoch - 124ms/step
+Epoch 58/200
+40/40 - 5s - loss: 0.0096 - val_loss: 0.0279 - lr: 6.2500e-05 - 5s/epoch - 124ms/step
+Epoch 59/200
+40/40 - 5s - loss: 0.0096 - val_loss: 0.0303 - lr: 6.2500e-05 - 5s/epoch - 123ms/step
+Epoch 60/200
+40/40 - 5s - loss: 0.0096 - val_loss: 0.0285 - lr: 6.2500e-05 - 5s/epoch - 124ms/step
+Epoch 61/200
+40/40 - 5s - loss: 0.0095 - val_loss: 0.0288 - lr: 6.2500e-05 - 5s/epoch - 124ms/step
+Epoch 62/200
+40/40 - 5s - loss: 0.0095 - val_loss: 0.0293 - lr: 6.2500e-05 - 5s/epoch - 125ms/step
+Weights saved to: artifacts/gru_big/model.weights.h5
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 492ms/step
+Saved run to: artifacts/gru_big
+Val metrics: {'loss': 0.025749461725354195}
+Test metrics: {'loss': 0.02970566600561142}
+
+==============================
+Training architecture: lstm_small
+==============================
+Epoch 1/200
+40/40 - 6s - loss: 0.0581 - val_loss: 0.0422 - lr: 0.0010 - 6s/epoch - 154ms/step
+Epoch 2/200
+40/40 - 3s - loss: 0.0268 - val_loss: 0.0379 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 3/200
+40/40 - 3s - loss: 0.0234 - val_loss: 0.0364 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 4/200
+40/40 - 3s - loss: 0.0210 - val_loss: 0.0385 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 5/200
+40/40 - 3s - loss: 0.0193 - val_loss: 0.0363 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 6/200
+40/40 - 3s - loss: 0.0185 - val_loss: 0.0373 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 7/200
+40/40 - 3s - loss: 0.0174 - val_loss: 0.0286 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 8/200
+40/40 - 3s - loss: 0.0164 - val_loss: 0.0317 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 9/200
+40/40 - 3s - loss: 0.0156 - val_loss: 0.0362 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 10/200
+40/40 - 3s - loss: 0.0148 - val_loss: 0.0363 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 11/200
+40/40 - 3s - loss: 0.0142 - val_loss: 0.0361 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 12/200
+40/40 - 3s - loss: 0.0139 - val_loss: 0.0285 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 13/200
+40/40 - 3s - loss: 0.0133 - val_loss: 0.0302 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 14/200
+40/40 - 3s - loss: 0.0129 - val_loss: 0.0312 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 15/200
+40/40 - 3s - loss: 0.0124 - val_loss: 0.0289 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 16/200
+40/40 - 3s - loss: 0.0119 - val_loss: 0.0310 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 17/200
+40/40 - 3s - loss: 0.0117 - val_loss: 0.0283 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 18/200
+40/40 - 3s - loss: 0.0115 - val_loss: 0.0318 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 19/200
+40/40 - 3s - loss: 0.0113 - val_loss: 0.0316 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 20/200
+40/40 - 3s - loss: 0.0110 - val_loss: 0.0337 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 21/200
+40/40 - 3s - loss: 0.0108 - val_loss: 0.0305 - lr: 0.0010 - 3s/epoch - 77ms/step
+Epoch 22/200
+40/40 - 3s - loss: 0.0105 - val_loss: 0.0331 - lr: 0.0010 - 3s/epoch - 76ms/step
+Epoch 23/200
+40/40 - 3s - loss: 0.0099 - val_loss: 0.0328 - lr: 5.0000e-04 - 3s/epoch - 77ms/step
+Epoch 24/200
+40/40 - 3s - loss: 0.0099 - val_loss: 0.0311 - lr: 5.0000e-04 - 3s/epoch - 77ms/step
+Epoch 25/200
+40/40 - 3s - loss: 0.0096 - val_loss: 0.0295 - lr: 5.0000e-04 - 3s/epoch - 77ms/step
+Epoch 26/200
+40/40 - 3s - loss: 0.0096 - val_loss: 0.0309 - lr: 5.0000e-04 - 3s/epoch - 77ms/step
+Epoch 27/200
+40/40 - 3s - loss: 0.0096 - val_loss: 0.0307 - lr: 5.0000e-04 - 3s/epoch - 77ms/step
+Epoch 28/200
+40/40 - 3s - loss: 0.0092 - val_loss: 0.0305 - lr: 2.5000e-04 - 3s/epoch - 76ms/step
+Epoch 29/200
+40/40 - 3s - loss: 0.0090 - val_loss: 0.0304 - lr: 2.5000e-04 - 3s/epoch - 77ms/step
+Epoch 30/200
+40/40 - 3s - loss: 0.0090 - val_loss: 0.0327 - lr: 2.5000e-04 - 3s/epoch - 77ms/step
+Epoch 31/200
+40/40 - 3s - loss: 0.0089 - val_loss: 0.0292 - lr: 2.5000e-04 - 3s/epoch - 77ms/step
+Epoch 32/200
+40/40 - 3s - loss: 0.0089 - val_loss: 0.0302 - lr: 2.5000e-04 - 3s/epoch - 77ms/step
+Weights saved to: artifacts/lstm_small/model.weights.h5
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 1s 515ms/step
+Saved run to: artifacts/lstm_small
+Val metrics: {'loss': 0.02834433503448963}
+Test metrics: {'loss': 0.03208548575639725}
+
+==============================
+Training architecture: lstm_big
+==============================
+Epoch 1/200
+40/40 - 9s - loss: 0.0500 - val_loss: 0.0409 - lr: 0.0010 - 9s/epoch - 235ms/step
+Epoch 2/200
+40/40 - 6s - loss: 0.0270 - val_loss: 0.0334 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 3/200
+40/40 - 6s - loss: 0.0239 - val_loss: 0.0381 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 4/200
+40/40 - 6s - loss: 0.0219 - val_loss: 0.0321 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 5/200
+40/40 - 6s - loss: 0.0202 - val_loss: 0.0338 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 6/200
+40/40 - 6s - loss: 0.0186 - val_loss: 0.0313 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 7/200
+40/40 - 6s - loss: 0.0184 - val_loss: 0.0338 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 8/200
+40/40 - 6s - loss: 0.0167 - val_loss: 0.0323 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 9/200
+40/40 - 6s - loss: 0.0159 - val_loss: 0.0323 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 10/200
+40/40 - 6s - loss: 0.0153 - val_loss: 0.0262 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 11/200
+40/40 - 6s - loss: 0.0149 - val_loss: 0.0296 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 12/200
+40/40 - 6s - loss: 0.0140 - val_loss: 0.0338 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 13/200
+40/40 - 6s - loss: 0.0137 - val_loss: 0.0281 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 14/200
+40/40 - 6s - loss: 0.0132 - val_loss: 0.0315 - lr: 0.0010 - 6s/epoch - 150ms/step
+Epoch 15/200
+40/40 - 6s - loss: 0.0125 - val_loss: 0.0289 - lr: 0.0010 - 6s/epoch - 149ms/step
+Epoch 16/200
+40/40 - 6s - loss: 0.0118 - val_loss: 0.0296 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 17/200
+40/40 - 6s - loss: 0.0113 - val_loss: 0.0285 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 18/200
+40/40 - 6s - loss: 0.0112 - val_loss: 0.0285 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 19/200
+40/40 - 6s - loss: 0.0110 - val_loss: 0.0299 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 20/200
+40/40 - 6s - loss: 0.0108 - val_loss: 0.0249 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 21/200
+40/40 - 6s - loss: 0.0106 - val_loss: 0.0260 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 22/200
+40/40 - 6s - loss: 0.0105 - val_loss: 0.0234 - lr: 5.0000e-04 - 6s/epoch - 150ms/step
+Epoch 23/200
+40/40 - 6s - loss: 0.0104 - val_loss: 0.0281 - lr: 5.0000e-04 - 6s/epoch - 150ms/step
+Epoch 24/200
+40/40 - 6s - loss: 0.0100 - val_loss: 0.0274 - lr: 5.0000e-04 - 6s/epoch - 150ms/step
+Epoch 25/200
+40/40 - 6s - loss: 0.0099 - val_loss: 0.0283 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 26/200
+40/40 - 6s - loss: 0.0097 - val_loss: 0.0297 - lr: 5.0000e-04 - 6s/epoch - 149ms/step
+Epoch 27/200
+40/40 - 6s - loss: 0.0096 - val_loss: 0.0301 - lr: 5.0000e-04 - 6s/epoch - 150ms/step
+Epoch 28/200
+40/40 - 6s - loss: 0.0092 - val_loss: 0.0284 - lr: 2.5000e-04 - 6s/epoch - 150ms/step
+Epoch 29/200
+40/40 - 6s - loss: 0.0091 - val_loss: 0.0266 - lr: 2.5000e-04 - 6s/epoch - 149ms/step
+Epoch 30/200
+40/40 - 6s - loss: 0.0088 - val_loss: 0.0290 - lr: 2.5000e-04 - 6s/epoch - 150ms/step
+Epoch 31/200
+40/40 - 6s - loss: 0.0088 - val_loss: 0.0277 - lr: 2.5000e-04 - 6s/epoch - 149ms/step
+Epoch 32/200
+40/40 - 6s - loss: 0.0087 - val_loss: 0.0274 - lr: 2.5000e-04 - 6s/epoch - 150ms/step
+Epoch 33/200
+40/40 - 6s - loss: 0.0085 - val_loss: 0.0287 - lr: 1.2500e-04 - 6s/epoch - 149ms/step
+Epoch 34/200
+40/40 - 6s - loss: 0.0084 - val_loss: 0.0285 - lr: 1.2500e-04 - 6s/epoch - 149ms/step
+Epoch 35/200
+40/40 - 6s - loss: 0.0084 - val_loss: 0.0266 - lr: 1.2500e-04 - 6s/epoch - 149ms/step
+Epoch 36/200
+40/40 - 6s - loss: 0.0083 - val_loss: 0.0271 - lr: 1.2500e-04 - 6s/epoch - 149ms/step
+Epoch 37/200
+40/40 - 6s - loss: 0.0083 - val_loss: 0.0277 - lr: 1.2500e-04 - 6s/epoch - 149ms/step
+Weights saved to: artifacts/lstm_big/model.weights.h5
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 1s 539ms/step
+Saved run to: artifacts/lstm_big
+Val metrics: {'loss': 0.02340705133974552}
+Test metrics: {'loss': 0.02793457731604576}
+
+###############################################################################
+Hábrók Cluster
+Job 27079473 for user s5549329
+Finished at: Sat Feb  7 22:08:56 CET 2026
+
+Job details:
+============
+
+Job ID                         : 27079473
+Name                           : wind_train
+User                           : s5549329
+Partition                      : gpushort
+Nodes                          : v100v2gpu17
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2026-02-07T21:53:27
+Start                          : 2026-02-07T21:53:28
+End                            : 2026-02-07T22:08:52
+Reserved walltime              : 04:00:00
+Used walltime                  : 00:15:24
+Used CPU time                  : 00:54:55 (Efficiency: 44.57%)
+% User (Computation)           : 91.37%
+% System (I/O)                 :  8.63%
+Total memory reserved          : 62.50G
+Maximum memory used            : 2.69G
+Requested GPUs                 : 1
+Allocated GPUs                 : v100=1
+Max GPU utilization            : 0%
+Max GPU memory used            : 0.00 
+Hints and tips      :
+ 1) You are running on a GPU node without actually using the GPU, please fix this.
+ 2) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints
+
+Acknowledgements:
+=================
+
+Please see this page for information about acknowledging Hábrók in your publications:
+
+https://wiki.hpc.rug.nl/habrok/introduction/scientific_output
+
+################################################################################

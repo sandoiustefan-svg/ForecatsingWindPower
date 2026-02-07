@@ -16,6 +16,8 @@ ml/.ruff_cache/
 ml/__pycache__/
 ml/.venv/
 
+ml/requirements2.txt
+
 !*.dvc
 !dvc.yaml
 !dvc.lock
