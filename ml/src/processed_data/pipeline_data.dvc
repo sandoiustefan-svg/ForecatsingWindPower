@@ -1,0 +1,6 @@
+outs:
+- md5: 468b3ebfd120ae061c1a7a8b78bf241e.dir
+  size: 796409586
+  nfiles: 7
+  hash: md5
+  path: pipeline_data

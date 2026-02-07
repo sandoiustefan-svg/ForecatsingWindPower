@@ -16,11 +16,13 @@ ml/.ruff_cache/
 ml/__pycache__/
 ml/.venv/
 
-# Machine Learning
-raw_data/
-processed_data/
+!*.dvc
+!dvc.yaml
+!dvc.lock
 *.csv
 *.parquet
+*.npz
+*.joblib
 
 #Coverage
 .coverage
