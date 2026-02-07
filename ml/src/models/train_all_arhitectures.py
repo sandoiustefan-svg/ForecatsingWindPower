@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import json
 from pathlib import Path
 
@@ -64,7 +62,7 @@ def main(
 
         model = KerasModel(config_path=str(run_config_path), name=arch_name)
 
-        model.fit(X_train, y_train, X_val, y_val, **fit_defaults, verbose=1)
+        model.fit(X_train, y_train, X_val, y_val, **fit_defaults, verbose=2)
 
         model.save_weights()
 
