@@ -26,6 +26,11 @@ ml/requirements2.txt
 *.npz
 *.joblib
 
+*.h5
+ml/artifacts/**/*.h5
+ml/logs/*.out
+ml/logs/*.err
+
 #Coverage
 .coverage
 coverage/
