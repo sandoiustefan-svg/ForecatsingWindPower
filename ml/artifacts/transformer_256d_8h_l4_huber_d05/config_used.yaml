@@ -1,0 +1,18 @@
+model:
+  type: Transformer
+  input_dim: 33
+  horizon: 61
+  d_model: 256
+  num_heads: 8
+  ff_dim: 512
+  num_layers: 4
+  dropout: 0.25
+  l2: 8e-5
+  layer_norm: true
+  output_activation: null
+training:
+  lr: 0.0006
+  clipnorm: 1.0
+  loss:
+    name: huber
+    delta: 0.05

@@ -1,0 +1,33 @@
+{
+  "arch_name": "transformer_128d_4h_l3_wmse_a2",
+  "fit_defaults": {
+    "epochs": 200,
+    "batch_size": 128,
+    "callbacks": [
+      {
+        "name": "EarlyStopping",
+        "monitor": "val_loss",
+        "patience": 20,
+        "min_delta": "1e-4",
+        "restore_best_weights": true
+      },
+      {
+        "name": "ReduceLROnPlateau",
+        "monitor": "val_loss",
+        "factor": 0.5,
+        "patience": 5,
+        "min_lr": "1e-5"
+      }
+    ]
+  },
+  "val": {
+    "loss": 0.051961734890937805,
+    "mae": 0.10252168774604797,
+    "rmse": 0.13642753660678864
+  },
+  "test": {
+    "loss": 0.0628512054681778,
+    "mae": 0.10887321829795837,
+    "rmse": 0.15100127458572388
+  }
+}

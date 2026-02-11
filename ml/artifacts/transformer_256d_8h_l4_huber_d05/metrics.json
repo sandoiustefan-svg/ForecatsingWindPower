@@ -1,0 +1,33 @@
+{
+  "arch_name": "transformer_256d_8h_l4_huber_d05",
+  "fit_defaults": {
+    "epochs": 200,
+    "batch_size": 128,
+    "callbacks": [
+      {
+        "name": "EarlyStopping",
+        "monitor": "val_loss",
+        "patience": 20,
+        "min_delta": "1e-4",
+        "restore_best_weights": true
+      },
+      {
+        "name": "ReduceLROnPlateau",
+        "monitor": "val_loss",
+        "factor": 0.5,
+        "patience": 5,
+        "min_lr": "1e-5"
+      }
+    ]
+  },
+  "val": {
+    "loss": 0.004625558853149414,
+    "mae": 0.0975484773516655,
+    "rmse": 0.13410799205303192
+  },
+  "test": {
+    "loss": 0.004990740213543177,
+    "mae": 0.10453817993402481,
+    "rmse": 0.15145538747310638
+  }
+}
