@@ -3,6 +3,70 @@ import tensorflow as tf
 from .ABC_model import DLModel
 
 
+class PositionalEncoding(tf.keras.layers.Layer):
+    def __init__(self, d_model: int):
+        super().__init__()
+        self.d_model = int(d_model)
+
+    def call(self, x):
+        # x: (B, T, D)
+        x = tf.cast(x, tf.float32)
+        seq_len = tf.shape(x)[1]
+        d_model = self.d_model
+
+        position = tf.cast(tf.range(seq_len)[:, tf.newaxis], tf.float32)  # (T, 1)
+        div_term = tf.exp(
+            tf.cast(tf.range(0, d_model, 2), tf.float32)
+            * (-tf.math.log(10000.0) / tf.cast(d_model, tf.float32))
+        )  # (ceil(D/2),)
+
+        sin_part = tf.sin(position * div_term)
+        cos_part = tf.cos(position * div_term)
+
+        pe = tf.reshape(tf.stack([sin_part, cos_part], axis=-1), (seq_len, -1))  # (T, 2*ceil(D/2))
+        pe = pe[:, :d_model]                      # (T, D)
+        pe = pe[tf.newaxis, ...]                  # (1, T, D)
+        return x + pe
+
+
+class TransformerEncoderBlock(tf.keras.layers.Layer):
+    def __init__(self, d_model: int, num_heads: int, ff_dim: int, dropout: float, reg=None):
+        super().__init__()
+        d_model = int(d_model)
+        num_heads = int(num_heads)
+        if d_model % num_heads != 0:
+            raise ValueError(f"d_model ({d_model}) must be divisible by num_heads ({num_heads})")
+
+        head_dim = d_model // num_heads
+
+        self.mha = tf.keras.layers.MultiHeadAttention(
+            num_heads=num_heads,
+            key_dim=head_dim,
+            dropout=float(dropout),
+        )
+
+        self.ffn = tf.keras.Sequential(
+            [
+                tf.keras.layers.Dense(int(ff_dim), activation="relu", kernel_regularizer=reg),
+                tf.keras.layers.Dropout(float(dropout)),
+                tf.keras.layers.Dense(d_model, kernel_regularizer=reg),
+            ]
+        )
+
+        self.norm1 = tf.keras.layers.LayerNormalization(epsilon=1e-6)
+        self.norm2 = tf.keras.layers.LayerNormalization(epsilon=1e-6)
+        self.drop1 = tf.keras.layers.Dropout(float(dropout))
+        self.drop2 = tf.keras.layers.Dropout(float(dropout))
+
+    def call(self, x, training=False):
+        attn = self.mha(x, x, training=training)
+        x = self.norm1(x + self.drop1(attn, training=training))
+        ffn_out = self.ffn(x, training=training)
+        x = self.norm2(x + self.drop2(ffn_out, training=training))
+        return x
+
+
+
 class KerasModel(DLModel):
     def __init__(self, config_path, name="keras_model"):
         super().__init__(name)
@@ -59,7 +123,6 @@ class KerasModel(DLModel):
 
         input_dim = int(cfg["input_dim"])
         horizon = int(cfg["horizon"])
-        hidden_units = cfg["hidden_units"]
 
         dropout = float(cfg.get("dropout", 0.0))
         l2v = float(cfg.get("l2", 0.0))
@@ -74,6 +137,8 @@ class KerasModel(DLModel):
         x = tf.keras.layers.LayerNormalization()(inputs)
 
         if model_type == "GRU":
+            hidden_units = cfg["hidden_units"]
+
             for units in hidden_units[:-1]:
                 x = tf.keras.layers.GRU(
                     int(units),
@@ -94,6 +159,8 @@ class KerasModel(DLModel):
             )(x)
 
         elif model_type == "LSTM":
+            hidden_units = cfg["hidden_units"]
+
             for units in hidden_units[:-1]:
                 x = tf.keras.layers.LSTM(
                     int(units),
@@ -113,10 +180,39 @@ class KerasModel(DLModel):
                 recurrent_regularizer=reg,
             )(x)
 
+        elif model_type == "Transformer":
+            # Transformer-specific params (with sane defaults)
+            d_model = int(cfg.get("d_model", 128))
+            num_heads = int(cfg.get("num_heads", 4))
+            ff_dim = int(cfg.get("ff_dim", 256))
+            num_layers = int(cfg.get("num_layers", 4))
+
+            # Project features -> d_model
+            x = tf.keras.layers.Dense(d_model, kernel_regularizer=reg)(x)
+
+            # Positional encoding
+            x = PositionalEncoding(d_model)(x)
+            x = tf.keras.layers.Dropout(dropout)(x)
+
+            # Encoder stack
+            for _ in range(num_layers):
+                x = TransformerEncoderBlock(
+                    d_model=d_model,
+                    num_heads=num_heads,
+                    ff_dim=ff_dim,
+                    dropout=dropout,
+                    reg=reg,
+                )(x)
+
+            # Pool over time -> fixed vector
+            x = tf.keras.layers.GlobalAveragePooling1D()(x)
+            if use_ln:
+                x = tf.keras.layers.LayerNormalization()(x)
+
         else:
             raise ValueError(f"Unknown model type: {model_type}")
 
-        outputs = tf.keras.layers.Dense(horizon, activation=output_activation)(x)
+        outputs = tf.keras.layers.Dense(horizon, activation=output_activation, kernel_regularizer=reg)(x)
         model = tf.keras.Model(inputs, outputs)
 
         # compile

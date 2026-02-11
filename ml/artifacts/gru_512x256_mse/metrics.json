@@ -1,0 +1,33 @@
+{
+  "arch_name": "gru_512x256_mse",
+  "fit_defaults": {
+    "epochs": 200,
+    "batch_size": 128,
+    "callbacks": [
+      {
+        "name": "EarlyStopping",
+        "monitor": "val_loss",
+        "patience": 20,
+        "min_delta": "1e-4",
+        "restore_best_weights": true
+      },
+      {
+        "name": "ReduceLROnPlateau",
+        "monitor": "val_loss",
+        "factor": 0.5,
+        "patience": 5,
+        "min_lr": "1e-5"
+      }
+    ]
+  },
+  "val": {
+    "loss": 0.02770265005528927,
+    "mae": 0.11764427274465561,
+    "rmse": 0.15357671678066254
+  },
+  "test": {
+    "loss": 0.031731314957141876,
+    "mae": 0.1243416965007782,
+    "rmse": 0.16617603600025177
+  }
+}
