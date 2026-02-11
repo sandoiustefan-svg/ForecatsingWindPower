@@ -21,14 +21,17 @@ export XLA_FLAGS="--xla_gpu_cuda_data_dir=${CUDA_HOME}"
 # Help the dynamic loader find CUDA/cuDNN libs
 export LD_LIBRARY_PATH="${EBROOTCUDA}/lib64:${EBROOTCUDNN}/lib64:${LD_LIBRARY_PATH:-}"
 
-# Go to repo -> ml
-cd /home2/s5549329/ForecatsingWindPower/ml || exit 1
-mkdir -p logs
+# Go to repo root (venv is here now)
+REPO="/home2/s5549329/ForecatsingWindPower"
+cd "${REPO}" || exit 1
+
+# Ensure logs dir exists (path is relative to repo root)
+mkdir -p ml/logs
 
 echo "=============================="
 echo "Module list:"
 module list || true
-echo "which python:"
+echo "which python (before venv):"
 which python || true
 python -V || true
 echo "=============================="
@@ -43,10 +46,14 @@ echo "nvidia-smi:"
 nvidia-smi || true
 echo "=============================="
 
-# Activate venv
+# Activate venv from repo root
 source .venv/bin/activate
 
-# (Optional) keep tooling updated; do NOT reinstall TF each job unless you really need to
+echo "which python (after venv):"
+which python || true
+python -V || true
+
+# (Optional) keep tooling updated; do NOT reinstall TF each job unless needed
 python -m pip install --upgrade pip setuptools wheel
 
 # TF / GPU diagnostics
@@ -58,6 +65,9 @@ print("GPUs:", tf.config.list_physical_devices("GPU"))
 print("CUDA build:", info.get("cuda_version"))
 print("cuDNN build:", info.get("cudnn_version"))
 PY
+
+# Run from ml/ so imports like "src...." resolve cleanly
+cd ml
 
 # Train
 python -m src.models.train_all_arhitectures

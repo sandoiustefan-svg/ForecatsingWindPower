@@ -25,11 +25,14 @@ ml/requirements2.txt
 *.parquet
 *.npz
 *.joblib
+*.sh
 
 *.h5
 ml/artifacts/**/*.h5
 ml/logs/*.out
 ml/logs/*.err
+# Prediction previews
+ml/artifacts/**/*.npz
 
 #Coverage
 .coverage

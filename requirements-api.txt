@@ -1,0 +1,17 @@
+# FastAPI Backend (Prediction API)
+fastapi>=0.110
+uvicorn[standard]>=0.27
+
+# Request/response validation
+pydantic>=2.0
+
+# Environment variables (recommended)
+python-dotenv
+
+# HTTP client (useful for testing integrations)
+httpx
+
+# Database 
+sqlalchemy>=2.0
+
+aiosqlite

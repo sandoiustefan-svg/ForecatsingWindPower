@@ -9,10 +9,6 @@ from .keras_model import KerasModel
 
 
 def _cast_callback_params(params: dict) -> dict:
-    """
-    Ensure numeric callback params are numeric even if YAML gave strings.
-    This prevents errors like: TypeError: '>' not supported between instances of 'str' and 'float'
-    """
     float_keys = {"min_lr", "factor", "min_delta", "threshold"}
     int_keys = {"patience", "cooldown", "verbose"}
 
@@ -74,6 +70,11 @@ def save_json(path: Path, obj: dict):
     path.write_text(json.dumps(obj, indent=2))
 
 
+def save_npz(path: Path, **arrays):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(path, **arrays)
+
+
 def evaluate(model: KerasModel, X, y):
     res = model.model.evaluate(X, y, verbose=0, return_dict=True)
     return {k: float(v) for k, v in res.items()}
@@ -81,7 +82,7 @@ def evaluate(model: KerasModel, X, y):
 
 def main(
     npz_path="src/processed_data/pipeline_data/windows_h61.npz",
-    multi_cfg_path="config.yaml",
+    multi_cfg_path="Transformer_config.yaml",
     artifacts_root="artifacts",
 ):
     X_train, y_train, X_val, y_val, X_test, y_test = load_npz(npz_path)
@@ -91,7 +92,7 @@ def main(
 
     archs = multi_cfg["architectures"]
     fit_defaults = multi_cfg["defaults"]["fit"]
-    
+
     for arch_name, arch_cfg in archs.items():
         print("\n==============================")
         print(f"Training architecture: {arch_name}")
@@ -119,13 +120,25 @@ def main(
         )
 
         model.save_weights()
-
         model.plot_learning_curves()
 
+        # Plot one example
         i = 0
-        y_pred = model.predict(X_test[i : i + 1])[0]  # (61,)
-        time = np.arange(y_test.shape[1])  # 0..60
-        model.plot_predictions(time, y_test[i], y_pred)
+        y_pred_one = model.predict(X_test[i : i + 1])[0]  # (61,)
+        t = np.arange(y_test.shape[1])  # 0..60
+        model.plot_predictions(t, y_test[i], y_pred_one)
+
+        # ✅ Save a small preview of predictions for API usage
+        N = 32
+        y_pred_batch = model.predict(X_test[:N])  # (N, 61)
+        y_true_batch = y_test[:N]                 # (N, 61)
+
+        save_npz(
+            run_dir / "predictions_preview.npz",
+            t=t,
+            y_true=y_true_batch,
+            y_pred=y_pred_batch,
+        )
 
         val_metrics = evaluate(model, X_val, y_val)
         test_metrics = evaluate(model, X_test, y_test)
