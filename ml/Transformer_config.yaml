@@ -1,0 +1,127 @@
+  transformer_128d_4h_l3_huber_d05:
+    model:
+      type: Transformer
+      input_dim: 33
+      horizon: 61
+      d_model: 128
+      num_heads: 4
+      ff_dim: 256
+      num_layers: 3
+      dropout: 0.15
+      l2: 2e-5
+      layer_norm: true
+      output_activation: null
+    training:
+      lr: 0.001
+      clipnorm: 1.0
+      loss: { name: huber, delta: 0.05 }
+
+  transformer_256d_8h_l3_huber_d05:
+    model:
+      type: Transformer
+      input_dim: 33
+      horizon: 61
+      d_model: 256
+      num_heads: 8
+      ff_dim: 512
+      num_layers: 3
+      dropout: 0.20
+      l2: 5e-5
+      layer_norm: true
+      output_activation: null
+    training:
+      lr: 0.0008
+      clipnorm: 1.0
+      loss: { name: huber, delta: 0.05 }
+
+  transformer_256d_8h_l4_huber_d05:
+    model:
+      type: Transformer
+      input_dim: 33
+      horizon: 61
+      d_model: 256
+      num_heads: 8
+      ff_dim: 512
+      num_layers: 4
+      dropout: 0.25
+      l2: 8e-5
+      layer_norm: true
+      output_activation: null
+    training:
+      lr: 0.0006
+      clipnorm: 1.0
+      loss: { name: huber, delta: 0.05 }
+
+  # =========================
+  # Transformer loss variants
+  # =========================
+
+  transformer_128d_4h_l3_wmse_a2:
+    model:
+      type: Transformer
+      input_dim: 33
+      horizon: 61
+      d_model: 128
+      num_heads: 4
+      ff_dim: 256
+      num_layers: 3
+      dropout: 0.15
+      l2: 2e-5
+      layer_norm: true
+      output_activation: null
+    training:
+      lr: 0.001
+      clipnorm: 1.0
+      loss: { name: weighted_mse, alpha: 2.0 }
+
+  transformer_128d_4h_l3_wmse_a5:
+    model:
+      type: Transformer
+      input_dim: 33
+      horizon: 61
+      d_model: 128
+      num_heads: 4
+      ff_dim: 256
+      num_layers: 3
+      dropout: 0.15
+      l2: 2e-5
+      layer_norm: true
+      output_activation: null
+    training:
+      lr: 0.001
+      clipnorm: 1.0
+      loss: { name: weighted_mse, alpha: 5.0 }
+
+  transformer_256d_8h_l3_wmse_a2:
+    model:
+      type: Transformer
+      input_dim: 33
+      horizon: 61
+      d_model: 256
+      num_heads: 8
+      ff_dim: 512
+      num_layers: 3
+      dropout: 0.20
+      l2: 5e-5
+      layer_norm: true
+      output_activation: null
+    training:
+      lr: 0.0008
+      clipnorm: 1.0
+      loss: { name: weighted_mse, alpha: 2.0 }
+      
+  defaults:
+    fit:
+      epochs: 200
+      batch_size: 128
+      callbacks:
+        - name: EarlyStopping
+          monitor: val_loss
+          patience: 20
+          min_delta: 1e-4
+          restore_best_weights: true
+        - name: ReduceLROnPlateau
+          monitor: val_loss
+          factor: 0.5
+          patience: 5
+          min_lr: 1e-5
