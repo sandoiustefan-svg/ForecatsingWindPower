@@ -26,6 +26,9 @@ ml/requirements2.txt
 *.npz
 *.joblib
 
+#Model Weights
+ml/artifacts/**/*.h5
+
 #Coverage
 .coverage
 coverage/
