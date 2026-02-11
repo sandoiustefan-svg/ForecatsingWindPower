@@ -1,0 +1,18 @@
+model:
+  type: LSTM
+  input_dim: 33
+  horizon: 61
+  hidden_units:
+  - 512
+  - 256
+  - 128
+  dropout: 0.3
+  l2: 5e-5
+  layer_norm: true
+  output_activation: null
+training:
+  lr: 0.001
+  clipnorm: 1.0
+  loss:
+    name: huber
+    delta: 0.05

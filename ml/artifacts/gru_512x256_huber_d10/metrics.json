@@ -1,0 +1,33 @@
+{
+  "arch_name": "gru_512x256_huber_d10",
+  "fit_defaults": {
+    "epochs": 200,
+    "batch_size": 128,
+    "callbacks": [
+      {
+        "name": "EarlyStopping",
+        "monitor": "val_loss",
+        "patience": 20,
+        "min_delta": "1e-4",
+        "restore_best_weights": true
+      },
+      {
+        "name": "ReduceLROnPlateau",
+        "monitor": "val_loss",
+        "factor": 0.5,
+        "patience": 5,
+        "min_lr": "1e-5"
+      }
+    ]
+  },
+  "val": {
+    "loss": 0.007619272451847792,
+    "mae": 0.10785610228776932,
+    "rmse": 0.1437283307313919
+  },
+  "test": {
+    "loss": 0.008420090191066265,
+    "mae": 0.11578546464443207,
+    "rmse": 0.16000232100486755
+  }
+}

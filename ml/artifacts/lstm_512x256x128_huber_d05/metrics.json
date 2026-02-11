@@ -1,0 +1,33 @@
+{
+  "arch_name": "lstm_512x256x128_huber_d05",
+  "fit_defaults": {
+    "epochs": 200,
+    "batch_size": 128,
+    "callbacks": [
+      {
+        "name": "EarlyStopping",
+        "monitor": "val_loss",
+        "patience": 20,
+        "min_delta": "1e-4",
+        "restore_best_weights": true
+      },
+      {
+        "name": "ReduceLROnPlateau",
+        "monitor": "val_loss",
+        "factor": 0.5,
+        "patience": 5,
+        "min_lr": "1e-5"
+      }
+    ]
+  },
+  "val": {
+    "loss": 0.0044364240020513535,
+    "mae": 0.10207625478506088,
+    "rmse": 0.1355239599943161
+  },
+  "test": {
+    "loss": 0.004769880790263414,
+    "mae": 0.10850188136100769,
+    "rmse": 0.15026776492595673
+  }
+}
