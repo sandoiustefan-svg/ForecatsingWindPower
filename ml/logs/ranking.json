@@ -1,0 +1,232 @@
+[
+  {
+    "arch": "lstm_512x512x256x128_huber_d05",
+    "val_rmse": 0.12899738550186157,
+    "val_mae": 0.09656287729740143,
+    "val_loss": 0.0043046241626143456,
+    "test_rmse": 0.1442190706729889,
+    "test_mae": 0.10342365503311157,
+    "test_loss": 0.0046510761603713036,
+    "path": "artifacts/lstm_512x512x256x128_huber_d05/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256_wmse_a5",
+    "val_rmse": 0.1327192187309265,
+    "val_mae": 0.10214515030384064,
+    "val_loss": 0.0713590756058693,
+    "test_rmse": 0.1364198476076126,
+    "test_mae": 0.10226932168006897,
+    "test_loss": 0.07868564128875732,
+    "path": "artifacts/lstm_512x256_wmse_a5/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_wmse_a2",
+    "val_rmse": 0.13505741953849792,
+    "val_mae": 0.10465410351753235,
+    "val_loss": 0.041957177221775055,
+    "test_rmse": 0.1408201903104782,
+    "test_mae": 0.10639514774084091,
+    "test_loss": 0.04657507687807083,
+    "path": "artifacts/gru_512x256_wmse_a2/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256x128_huber_d05",
+    "val_rmse": 0.1355239599943161,
+    "val_mae": 0.10207625478506088,
+    "val_loss": 0.0044364240020513535,
+    "test_rmse": 0.15026776492595673,
+    "test_mae": 0.10850188136100769,
+    "test_loss": 0.004769880790263414,
+    "path": "artifacts/lstm_512x256x128_huber_d05/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_huber_d10",
+    "val_rmse": 0.1437283307313919,
+    "val_mae": 0.10785610228776932,
+    "val_loss": 0.007619272451847792,
+    "test_rmse": 0.16000232100486755,
+    "test_mae": 0.11578546464443207,
+    "test_loss": 0.008420090191066265,
+    "path": "artifacts/gru_512x256_huber_d10/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_drop10_l2e6",
+    "val_rmse": 0.1438995748758316,
+    "val_mae": 0.10851453989744186,
+    "val_loss": 0.004902441054582596,
+    "test_rmse": 0.15399402379989624,
+    "test_mae": 0.11236502230167389,
+    "test_loss": 0.005100642330944538,
+    "path": "artifacts/gru_512x256_drop10_l2e6/metrics.json"
+  },
+  {
+    "arch": "gru_1024x512x256_huber_d05",
+    "val_rmse": 0.1454756110906601,
+    "val_mae": 0.10845180600881577,
+    "val_loss": 0.004746772814542055,
+    "test_rmse": 0.1626424342393875,
+    "test_mae": 0.11503885686397552,
+    "test_loss": 0.005085223354399204,
+    "path": "artifacts/gru_1024x512x256_huber_d05/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256_drop10_l2e6",
+    "val_rmse": 0.14617988467216492,
+    "val_mae": 0.10976147651672363,
+    "val_loss": 0.005127487704157829,
+    "test_rmse": 0.15464699268341064,
+    "test_mae": 0.11460712552070618,
+    "test_loss": 0.005374997854232788,
+    "path": "artifacts/lstm_512x256_drop10_l2e6/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256_huber_d10",
+    "val_rmse": 0.14652101695537567,
+    "val_mae": 0.11125840991735458,
+    "val_loss": 0.008270938880741596,
+    "test_rmse": 0.15544095635414124,
+    "test_mae": 0.11480935662984848,
+    "test_loss": 0.008663948625326157,
+    "path": "artifacts/lstm_512x256_huber_d10/metrics.json"
+  },
+  {
+    "arch": "lstm_1024x512x256_huber_d05",
+    "val_rmse": 0.1470613181591034,
+    "val_mae": 0.11065389215946198,
+    "val_loss": 0.0048221866600215435,
+    "test_rmse": 0.15676391124725342,
+    "test_mae": 0.1142757311463356,
+    "test_loss": 0.005012389738112688,
+    "path": "artifacts/lstm_1024x512x256_huber_d05/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_huber_d02",
+    "val_rmse": 0.1483384221792221,
+    "val_mae": 0.11170386523008347,
+    "val_loss": 0.0022721646819263697,
+    "test_rmse": 0.1627999246120453,
+    "test_mae": 0.11675858497619629,
+    "test_loss": 0.0023738632444292307,
+    "path": "artifacts/gru_512x256_huber_d02/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_huber_d05",
+    "val_rmse": 0.1488003432750702,
+    "val_mae": 0.11104113608598709,
+    "val_loss": 0.005049853585660458,
+    "test_rmse": 0.16535377502441406,
+    "test_mae": 0.11668696999549866,
+    "test_loss": 0.0053400322794914246,
+    "path": "artifacts/gru_512x256_huber_d05/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_wmse_a5",
+    "val_rmse": 0.1498716026544571,
+    "val_mae": 0.11815883219242096,
+    "val_loss": 0.08666089922189713,
+    "test_rmse": 0.15677747130393982,
+    "test_mae": 0.12108128517866135,
+    "test_loss": 0.09776787459850311,
+    "path": "artifacts/gru_512x256_wmse_a5/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_drop35_l2e4",
+    "val_rmse": 0.151864692568779,
+    "val_mae": 0.11408338695764542,
+    "val_loss": 0.005388693418353796,
+    "test_rmse": 0.16633714735507965,
+    "test_mae": 0.11787452548742294,
+    "test_loss": 0.005586548708379269,
+    "path": "artifacts/gru_512x256_drop35_l2e4/metrics.json"
+  },
+  {
+    "arch": "gru_512x512x256x128_huber_d05",
+    "val_rmse": 0.1531093269586563,
+    "val_mae": 0.11560441553592682,
+    "val_loss": 0.005301071796566248,
+    "test_rmse": 0.16473670303821564,
+    "test_mae": 0.11964429914951324,
+    "test_loss": 0.0055123367346823215,
+    "path": "artifacts/gru_512x512x256x128_huber_d05/metrics.json"
+  },
+  {
+    "arch": "lstm_1024x512_huber_d05",
+    "val_rmse": 0.15324684977531433,
+    "val_mae": 0.11554083973169327,
+    "val_loss": 0.005020203534513712,
+    "test_rmse": 0.16248983144760132,
+    "test_mae": 0.11905258148908615,
+    "test_loss": 0.005207333248108625,
+    "path": "artifacts/lstm_1024x512_huber_d05/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_mse",
+    "val_rmse": 0.15357671678066254,
+    "val_mae": 0.11764427274465561,
+    "val_loss": 0.02770265005528927,
+    "test_rmse": 0.16617603600025177,
+    "test_mae": 0.1243416965007782,
+    "test_loss": 0.031731314957141876,
+    "path": "artifacts/gru_512x256_mse/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256_huber_d05",
+    "val_rmse": 0.15564556419849396,
+    "val_mae": 0.11622501909732819,
+    "val_loss": 0.0050206733867526054,
+    "test_rmse": 0.1692093461751938,
+    "test_mae": 0.12293742597103119,
+    "test_loss": 0.005362430587410927,
+    "path": "artifacts/lstm_512x256_huber_d05/metrics.json"
+  },
+  {
+    "arch": "gru_512x256x128_huber_d05",
+    "val_rmse": 0.1558442860841751,
+    "val_mae": 0.11685428768396378,
+    "val_loss": 0.005103045143187046,
+    "test_rmse": 0.17127756774425507,
+    "test_mae": 0.12288808077573776,
+    "test_loss": 0.005410566460341215,
+    "path": "artifacts/gru_512x256x128_huber_d05/metrics.json"
+  },
+  {
+    "arch": "gru_1024x512_huber_d05",
+    "val_rmse": 0.15772797167301178,
+    "val_mae": 0.11844515800476074,
+    "val_loss": 0.005837248172610998,
+    "test_rmse": 0.16839608550071716,
+    "test_mae": 0.11773756146430969,
+    "test_loss": 0.005821302067488432,
+    "path": "artifacts/gru_1024x512_huber_d05/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256_mae",
+    "val_rmse": 0.1583465188741684,
+    "val_mae": 0.11923003196716309,
+    "val_loss": 0.12810108065605164,
+    "test_rmse": 0.16994470357894897,
+    "test_mae": 0.1253245621919632,
+    "test_loss": 0.13419556617736816,
+    "path": "artifacts/lstm_512x256_mae/metrics.json"
+  },
+  {
+    "arch": "lstm_512x256_drop35_l2e4",
+    "val_rmse": 0.16028758883476257,
+    "val_mae": 0.11920645087957382,
+    "val_loss": 0.005316599737852812,
+    "test_rmse": 0.17741897702217102,
+    "test_mae": 0.12578162550926208,
+    "test_loss": 0.005653643049299717,
+    "path": "artifacts/lstm_512x256_drop35_l2e4/metrics.json"
+  },
+  {
+    "arch": "gru_512x256_mae",
+    "val_rmse": 0.16088436543941498,
+    "val_mae": 0.1220967173576355,
+    "val_loss": 0.13164135813713074,
+    "test_rmse": 0.17443746328353882,
+    "test_mae": 0.13078081607818604,
+    "test_loss": 0.14032547175884247,
+    "path": "artifacts/gru_512x256_mae/metrics.json"
+  }
+]

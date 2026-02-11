@@ -1,0 +1,17 @@
+Top 15 by val_rmse (then val_mae)
+
+01. lstm_512x512x256x128_huber_d05       val_rmse=0.128997  val_mae=0.096563  test_rmse=0.144219  test_mae=0.103424
+02. lstm_512x256_wmse_a5                 val_rmse=0.132719  val_mae=0.102145  test_rmse=0.136420  test_mae=0.102269
+03. gru_512x256_wmse_a2                  val_rmse=0.135057  val_mae=0.104654  test_rmse=0.140820  test_mae=0.106395
+04. lstm_512x256x128_huber_d05           val_rmse=0.135524  val_mae=0.102076  test_rmse=0.150268  test_mae=0.108502
+05. gru_512x256_huber_d10                val_rmse=0.143728  val_mae=0.107856  test_rmse=0.160002  test_mae=0.115785
+06. gru_512x256_drop10_l2e6              val_rmse=0.143900  val_mae=0.108515  test_rmse=0.153994  test_mae=0.112365
+07. gru_1024x512x256_huber_d05           val_rmse=0.145476  val_mae=0.108452  test_rmse=0.162642  test_mae=0.115039
+08. lstm_512x256_drop10_l2e6             val_rmse=0.146180  val_mae=0.109761  test_rmse=0.154647  test_mae=0.114607
+09. lstm_512x256_huber_d10               val_rmse=0.146521  val_mae=0.111258  test_rmse=0.155441  test_mae=0.114809
+10. lstm_1024x512x256_huber_d05          val_rmse=0.147061  val_mae=0.110654  test_rmse=0.156764  test_mae=0.114276
+11. gru_512x256_huber_d02                val_rmse=0.148338  val_mae=0.111704  test_rmse=0.162800  test_mae=0.116759
+12. gru_512x256_huber_d05                val_rmse=0.148800  val_mae=0.111041  test_rmse=0.165354  test_mae=0.116687
+13. gru_512x256_wmse_a5                  val_rmse=0.149872  val_mae=0.118159  test_rmse=0.156777  test_mae=0.121081
+14. gru_512x256_drop35_l2e4              val_rmse=0.151865  val_mae=0.114083  test_rmse=0.166337  test_mae=0.117875
+15. gru_512x512x256x128_huber_d05        val_rmse=0.153109  val_mae=0.115604  test_rmse=0.164737  test_mae=0.119644
